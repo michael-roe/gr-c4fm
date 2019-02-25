@@ -9,8 +9,14 @@
 
 %{
 #include "c4fm/c4fm_soft_decision_fc.h"
+#include "c4fm/bernoulli_source_b.h"
+#include "c4fm/golay_encoder_bb.h"
 %}
 
 
 %include "c4fm/c4fm_soft_decision_fc.h"
 GR_SWIG_BLOCK_MAGIC2(c4fm, c4fm_soft_decision_fc);
+%include "c4fm/bernoulli_source_b.h"
+GR_SWIG_BLOCK_MAGIC2(c4fm, bernoulli_source_b);
+%include "c4fm/golay_encoder_bb.h"
+GR_SWIG_BLOCK_MAGIC2(c4fm, golay_encoder_bb);

@@ -27,6 +27,8 @@ link_directories(${Boost_LIBRARY_DIRS})
 
 list(APPEND c4fm_sources
     c4fm_soft_decision_fc_impl.cc
+    bernoulli_source_b_impl.cc
+    golay_encoder_bb_impl.cc
 )
 
 set(c4fm_sources "${c4fm_sources}" PARENT_SCOPE)

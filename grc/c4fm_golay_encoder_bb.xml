@@ -1,0 +1,15 @@
+<block>
+  <name>Golay encoder</name>
+  <key>c4fm_golay_encoder_bb</key>
+  <category>[C4FM]</category>
+  <import>import c4fm</import>
+  <make>c4fm.golay_encoder_bb()</make>
+  <sink>
+    <name>in</name>
+    <type>byte</type>
+  </sink>
+  <source>
+    <name>out</name>
+    <type>byte</type>
+  </source>
+</block>

@@ -18,5 +18,7 @@
 # Boston, MA 02110-1301, USA.
 
 install(FILES
-    c4fm_c4fm_soft_decision_fc.xml DESTINATION share/gnuradio/grc/blocks
+    c4fm_c4fm_soft_decision_fc.xml
+    c4fm_bernoulli_source_b.xml
+    c4fm_golay_encoder_bb.xml DESTINATION share/gnuradio/grc/blocks
 )

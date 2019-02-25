@@ -22,5 +22,7 @@
 ########################################################################
 install(FILES
     api.h
-    c4fm_soft_decision_fc.h DESTINATION include/c4fm
+    c4fm_soft_decision_fc.h
+    bernoulli_source_b.h
+    golay_encoder_bb.h DESTINATION include/c4fm
 )

@@ -1,0 +1,16 @@
+<block>
+  <name>Bernoulli source</name>
+  <key>c4fm_bernoulli_source_b</key>
+  <category>[C4FM]</category>
+  <import>import c4fm</import>
+  <make>c4fm.bernoulli_source_b($p)</make>
+  <param>
+    <name>P</name>
+    <key>p</key>
+    <type>real</type>
+  </param>
+  <source>
+    <name>out</name>
+    <type>byte</type>
+  </source>
+</block>
