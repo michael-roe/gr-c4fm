@@ -1,5 +1,5 @@
 <block>
-  <name>Bernoulli source</name>
+  <name>Bernoulli Source</name>
   <key>c4fm_bernoulli_source_b</key>
   <category>[C4FM]</category>
   <import>import c4fm</import>

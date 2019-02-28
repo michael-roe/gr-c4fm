@@ -19,40 +19,42 @@
  */
 
 
-#ifndef INCLUDED_C4FM_BERNOULLI_SOURCE_B_H
-#define INCLUDED_C4FM_BERNOULLI_SOURCE_B_H
+#ifndef INCLUDED_C4FM_GOLAY_DECODER_BB_H
+#define INCLUDED_C4FM_GOLAY_DECODER_BB_H
 
 #include <c4fm/api.h>
-#include <gnuradio/sync_block.h>
+#include <gnuradio/sync_decimator.h>
 
 namespace gr {
   namespace c4fm {
 
     /*!
-     * \brief Generate random bits that have a Bernoulli distribution.
+     * \brief Decode using the extended binary Golay code
      * \ingroup c4fm
      * \details
-     * Each byte in the output stream is 1 with probability p and 0 with probability 1-p.
+     * The input stream is divided into blocks of 24 bits. The output stream contains
+     * the first twelve bits of each input block. If the input block is not a valid codeword,
+     * then a parity_error tag will be added to the first bit of the output block.
      *
      */
-    class C4FM_API bernoulli_source_b : virtual public gr::sync_block
+    class C4FM_API golay_decoder_bb : virtual public gr::sync_decimator
     {
      public:
-      typedef boost::shared_ptr<bernoulli_source_b> sptr;
+      typedef boost::shared_ptr<golay_decoder_bb> sptr;
 
       /*!
-       * \brief Return a shared_ptr to a new instance of c4fm::bernoulli_source_b.
+       * \brief Return a shared_ptr to a new instance of c4fm::golay_decoder_bb.
        *
-       * To avoid accidental use of raw pointers, c4fm::bernoulli_source_b's
+       * To avoid accidental use of raw pointers, c4fm::golay_decoder_bb's
        * constructor is in a private implementation
-       * class. c4fm::bernoulli_source_b::make is the public interface for
+       * class. c4fm::golay_decoder_bb::make is the public interface for
        * creating new instances.
        */
-      static sptr make(double p);
+      static sptr make();
     };
 
   } // namespace c4fm
 } // namespace gr
 
-#endif /* INCLUDED_C4FM_BERNOULLI_SOURCE_B_H */
+#endif /* INCLUDED_C4FM_GOLAY_DECODER_BB_H */
 

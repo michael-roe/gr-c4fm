@@ -24,5 +24,8 @@ install(FILES
     api.h
     c4fm_soft_decision_fc.h
     bernoulli_source_b.h
-    golay_encoder_bb.h DESTINATION include/c4fm
+    golay_encoder_bb.h
+    parity_check_bb.h
+    discard_parity_errors_bb.h
+    golay_decoder_bb.h DESTINATION include/c4fm
 )

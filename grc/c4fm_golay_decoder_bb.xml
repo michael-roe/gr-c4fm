@@ -1,9 +1,9 @@
 <block>
-  <name>Golay Encoder</name>
-  <key>c4fm_golay_encoder_bb</key>
+  <name>Golay Decoder</name>
+  <key>c4fm_golay_decoder_bb</key>
   <category>[C4FM]</category>
   <import>import c4fm</import>
-  <make>c4fm.golay_encoder_bb()</make>
+  <make>c4fm.golay_decoder_bb()</make>
   <sink>
     <name>in</name>
     <type>byte</type>

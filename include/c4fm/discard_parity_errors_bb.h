@@ -19,40 +19,43 @@
  */
 
 
-#ifndef INCLUDED_C4FM_BERNOULLI_SOURCE_B_H
-#define INCLUDED_C4FM_BERNOULLI_SOURCE_B_H
+#ifndef INCLUDED_C4FM_DISCARD_PARITY_ERRORS_BB_H
+#define INCLUDED_C4FM_DISCARD_PARITY_ERRORS_BB_H
 
 #include <c4fm/api.h>
-#include <gnuradio/sync_block.h>
+#include <gnuradio/block.h>
 
 namespace gr {
   namespace c4fm {
 
     /*!
-     * \brief Generate random bits that have a Bernoulli distribution.
+     * \brief Discard blocks that have been tagged as containing a parity error.
      * \ingroup c4fm
      * \details
-     * Each byte in the output stream is 1 with probability p and 0 with probability 1-p.
+     * The two input streams are divided into blocks of length blocksize. If the
+     * block from stream one contains a parity_error tag, then both blocks are
+     * discarded. Otherwise, the block from in0 is copied to out0, and in1 is copied
+     * to out0.
      *
      */
-    class C4FM_API bernoulli_source_b : virtual public gr::sync_block
+    class C4FM_API discard_parity_errors_bb : virtual public gr::block
     {
      public:
-      typedef boost::shared_ptr<bernoulli_source_b> sptr;
+      typedef boost::shared_ptr<discard_parity_errors_bb> sptr;
 
       /*!
-       * \brief Return a shared_ptr to a new instance of c4fm::bernoulli_source_b.
+       * \brief Return a shared_ptr to a new instance of c4fm::discard_parity_errors_bb.
        *
-       * To avoid accidental use of raw pointers, c4fm::bernoulli_source_b's
+       * To avoid accidental use of raw pointers, c4fm::discard_parity_errors_bb's
        * constructor is in a private implementation
-       * class. c4fm::bernoulli_source_b::make is the public interface for
+       * class. c4fm::discard_parity_errors_bb::make is the public interface for
        * creating new instances.
        */
-      static sptr make(double p);
+      static sptr make(int blocksize);
     };
 
   } // namespace c4fm
 } // namespace gr
 
-#endif /* INCLUDED_C4FM_BERNOULLI_SOURCE_B_H */
+#endif /* INCLUDED_C4FM_DISCARD_PARITY_ERRORS_BB_H */
 
