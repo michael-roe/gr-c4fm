@@ -29,7 +29,9 @@ namespace gr {
     class golay_decoder_bb_impl : public golay_decoder_bb
     {
      private:
-      // Nothing to declare in this block.
+      pmt::pmt_t d_block_len_pmt;
+      pmt::pmt_t d_parity_error_key;
+      int d_offset;
 
      public:
       golay_decoder_bb_impl();

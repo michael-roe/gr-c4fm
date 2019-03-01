@@ -44,6 +44,9 @@ namespace gr {
               gr::io_signature::make(1, 1, sizeof(char)), 2)
     {
       set_output_multiple(12);
+      d_block_len_pmt = pmt::from_long(12);
+      d_parity_error_key = pmt::string_to_symbol("parity_error");
+      d_offset = 0;
     }
 
     /*
@@ -62,15 +65,27 @@ namespace gr {
       char *out = (char *) output_items[0];
       int i;
       int j;
+      int parity;
 
       for (i=0; i<noutput_items/12; i++)
       {
+	parity = 0;
         for (j=0; j<12; j++)
         {
+	  parity ^= in[24*i+j] & 0x1;
           out[12*i+j] = in[24*i+j];
 	}
+	for (j=12; j<24; j++)
+	{
+          parity ^= in[24*i+j] & 0x1;
+	}
+	if (parity)
+        {
+          add_item_tag(0, d_offset+i*12, d_parity_error_key, d_block_len_pmt);
+        }
       }
 
+      d_offset += noutput_items;
       // Tell runtime system how many output items we produced.
       return noutput_items;
     }
