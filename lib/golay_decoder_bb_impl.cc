@@ -67,21 +67,124 @@ namespace gr {
       int i;
       int j;
       int parity;
+      unsigned int s;
+      unsigned int w1;
+
+      w1 = 1 | (1 << 2) | (1 << 4) | (1 << 5) | (1 << 6) | (1 << 10) | (1 << 11);
 
       for (i=0; i<noutput_items/12; i++)
       {
 	parity = 0;
-        for (j=0; j<12; j++)
+	s = 0;
+        for (j=11; j>=0; j--)
         {
 	  parity ^= in[24*i+j] & 0x1;
+	  s ^= (in[24*i+j] & 1);
+          if (s & 1)
+          {
+            s ^= w1;
+	  }
+          s = s >> 1;
           out[12*i+j] = in[24*i+j];
 	}
-	for (j=12; j<24; j++)
+	for (j=12; j<23; j++)
 	{
           parity ^= in[24*i+j] & 0x1;
+	  if (in[24*i+j] & 0x01)
+	  {
+	    s ^= (1 << (22 - j));
+	  }
 	}
+	parity ^= in[24*i+23];
+
+	/* If the error is in only one bit, correct it */
 	if (parity)
+	{
+	  switch (s)
+	  {
+	    case 0:
+	    case 1:
+	    case 2:
+	    case 4:
+	    case 8:
+	    case 16:
+	    case 32:
+	    case 64:
+	    case 128:
+	    case 256:
+	    case 512:
+	    case 1024:
+              s = 0;
+	      parity = 0;
+	      break;
+	    case 1594:
+	      out[12*i] ^= 1;
+	      s = 0;
+	      parity = 0;
+	      break;
+	    case 797:
+	      out[12*i + 1] ^= 1;
+	      s = 0;
+	      parity = 0;
+	      break;
+	    case 1972:
+	      out[12*i + 2] ^= 1;
+	      s = 0;
+	      parity = 0;
+	      break;
+	    case 986:
+	      out[12*i + 3] ^= 1;
+              s = 0;
+              parity = 0;
+              break;
+            case 493:
+	      out[12*i + 4] ^= 1;
+              s = 0;
+              parity = 0;
+              break;
+            case 1740:
+	      out[12*i + 5] ^= 1;
+              s = 0;
+              parity = 0;
+              break;
+            case 870:
+	      out[12*i + 6] ^= 1;
+              s = 0;
+              parity = 0;
+              break;
+	    case 435:
+	      out[12*i + 7] ^= 1;
+              s = 0;
+              parity = 0;
+              break;
+            case 1763:
+	      out[12*i + 8] ^= 1;
+              s = 0;
+              parity = 0;
+              break;
+	    case 1355:
+	      out[12*i + 9] ^= 1;
+              s = 0;
+              parity = 0;
+              break;
+	    case 1183:
+	      out[12*i + 10] ^= 1;
+              s = 0;
+              parity = 0;
+              break;
+	    case 1141:
+	      out[12*i + 11] ^= 1;
+              s = 0;
+              parity = 0;
+              break;
+	    default:
+	      break;
+          }
+	}
+
+	if ((s != 0) || (parity != 0))
         {
+          /* fprintf(stderr, "parity = %d, syndrome = %d\n", parity, s); */
           add_item_tag(0, d_offset+i*12, d_parity_error_key, pmt::PMT_T);
 	  d_previous_error = 1;
         }
