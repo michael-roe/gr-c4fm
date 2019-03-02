@@ -33,8 +33,10 @@ namespace gr {
      * \ingroup c4fm
      * \details
      * The input stream is divided into blocks of length blocksize. The output stream
-     * is equal to the input stream, with a parity_error tag added at the start of each
-     * block that does not have even parity.
+     * is equal to the input stream, with a parity_error tag with a value of PMT_T
+     * added at the start of each block that does not have even parity. A parity_error
+     * tag with a value of PMT_F is added to the start of the first valid block after
+     * a block containing a parity error.
      *
      */
     class C4FM_API parity_check_bb : virtual public gr::sync_block

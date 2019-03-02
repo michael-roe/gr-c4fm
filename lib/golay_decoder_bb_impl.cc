@@ -47,6 +47,7 @@ namespace gr {
       d_block_len_pmt = pmt::from_long(12);
       d_parity_error_key = pmt::string_to_symbol("parity_error");
       d_offset = 0;
+      d_previous_error = 0;
     }
 
     /*
@@ -81,8 +82,14 @@ namespace gr {
 	}
 	if (parity)
         {
-          add_item_tag(0, d_offset+i*12, d_parity_error_key, d_block_len_pmt);
+          add_item_tag(0, d_offset+i*12, d_parity_error_key, pmt::PMT_T);
+	  d_previous_error = 1;
         }
+	else if (d_previous_error)
+	{
+	  add_item_tag(0, d_offset+i*12, d_parity_error_key, pmt::PMT_F);
+	  d_previous_error = 0;
+	}
       }
 
       d_offset += noutput_items;

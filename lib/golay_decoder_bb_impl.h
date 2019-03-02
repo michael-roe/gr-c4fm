@@ -32,6 +32,7 @@ namespace gr {
       pmt::pmt_t d_block_len_pmt;
       pmt::pmt_t d_parity_error_key;
       int d_offset;
+      int d_previous_error;
 
      public:
       golay_decoder_bb_impl();

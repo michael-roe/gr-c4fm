@@ -33,8 +33,10 @@ namespace gr {
      * \ingroup c4fm
      * \details
      * The input stream is divided into blocks of 24 bits. The output stream contains
-     * the first twelve bits of each input block. If the input block is not a valid codeword,
-     * then a parity_error tag will be added to the first bit of the output block.
+     * the first twelve bits of each input block. If the input block is not a valid
+     * codeword, then a parity_error tag with a value of PMT_T will be added to the
+     * first bit of the output block. A parity_error tag with a value of PMT_F will be
+     * added at the start of the first valid block after a block containing an error.
      *
      */
     class C4FM_API golay_decoder_bb : virtual public gr::sync_decimator

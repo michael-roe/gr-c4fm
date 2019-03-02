@@ -120,7 +120,7 @@ namespace gr {
 	  /* fprintf(stderr, "Relative to start of block = %lld\n", tags[next_tag].offset - nitems_read(0) - d_blocksize*i); */
 	  /* Should fix up the offsets of tags */
 	  next_tag++;
-	  while ((next_tag < tags.size()) && ! pmt::equal(d_tag_key, tags[next_tag].key))
+	  while ((next_tag < tags.size()) && (!pmt::equal(d_tag_key, tags[next_tag].key)) && (!pmt::equal(pmt::PMT_T, tags[next_tag].value)))
           {
 	    /* Ought to skip the tag if its in the current block */
             /* fprintf(stderr, "skipping irrelevant tag\n"); */

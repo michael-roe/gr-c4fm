@@ -85,7 +85,13 @@ namespace gr {
 	}
 	if (parity)
         {
-	  add_item_tag(0, d_offset+i*d_blocksize, d_parity_error_key, d_block_len_pmt);
+	  add_item_tag(0, d_offset+i*d_blocksize, d_parity_error_key, pmt::PMT_T);
+	  d_previous_error = 1;
+	}
+	else if (d_previous_error)
+	{
+	  add_item_tag(0, d_offset+i*d_blocksize, d_parity_error_key, pmt::PMT_F);
+	  d_previous_error = 0;
 	}
       }
 
