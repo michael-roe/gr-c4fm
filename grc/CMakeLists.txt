@@ -23,5 +23,6 @@ install(FILES
     c4fm_golay_encoder_bb.xml
     c4fm_parity_check_bb.xml
     c4fm_discard_parity_errors_bb.xml
-    c4fm_golay_decoder_bb.xml DESTINATION share/gnuradio/grc/blocks
+    c4fm_golay_decoder_bb.xml
+    c4fm_frame_sync_bb.xml DESTINATION share/gnuradio/grc/blocks
 )

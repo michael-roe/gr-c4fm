@@ -27,5 +27,6 @@ install(FILES
     golay_encoder_bb.h
     parity_check_bb.h
     discard_parity_errors_bb.h
-    golay_decoder_bb.h DESTINATION include/c4fm
+    golay_decoder_bb.h
+    frame_sync_bb.h DESTINATION include/c4fm
 )

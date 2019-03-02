@@ -1,0 +1,35 @@
+<block>
+  <name>Frame Sync</name>
+  <key>c4fm_frame_sync_bb</key>
+  <category>[C4FM]</category>
+  <import>import c4fm</import>
+  <make>c4fm.frame_sync_bb($frame_size, $sync_size, $bps, $sync)</make>
+  <param>
+    <name>Frame Size</name>
+    <key>frame_size</key>
+    <type>int</type>
+  </param>
+  <param>
+    <name>Sync Size</name>
+    <key>sync_size</key>
+    <type>int</type>
+  </param>
+  <param>
+    <name>Bits per Symbol</name>
+    <key>bps</key>
+    <type>int</type>
+  </param>
+  <param>
+    <name>Sync Word</name>
+    <key>sync</key>
+    <type>int</type>
+  </param>
+  <sink>
+    <name>in</name>
+    <type>byte</type>
+  </sink>
+  <source>
+    <name>out</name>
+    <type>byte</type>
+  </source>
+</block>

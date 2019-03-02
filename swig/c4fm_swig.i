@@ -14,6 +14,7 @@
 #include "c4fm/parity_check_bb.h"
 #include "c4fm/discard_parity_errors_bb.h"
 #include "c4fm/golay_decoder_bb.h"
+#include "c4fm/frame_sync_bb.h"
 %}
 
 
@@ -29,3 +30,5 @@ GR_SWIG_BLOCK_MAGIC2(c4fm, parity_check_bb);
 GR_SWIG_BLOCK_MAGIC2(c4fm, discard_parity_errors_bb);
 %include "c4fm/golay_decoder_bb.h"
 GR_SWIG_BLOCK_MAGIC2(c4fm, golay_decoder_bb);
+%include "c4fm/frame_sync_bb.h"
+GR_SWIG_BLOCK_MAGIC2(c4fm, frame_sync_bb);

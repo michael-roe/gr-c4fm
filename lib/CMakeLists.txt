@@ -32,6 +32,7 @@ list(APPEND c4fm_sources
     parity_check_bb_impl.cc
     discard_parity_errors_bb_impl.cc
     golay_decoder_bb_impl.cc
+    frame_sync_bb_impl.cc
 )
 
 set(c4fm_sources "${c4fm_sources}" PARENT_SCOPE)

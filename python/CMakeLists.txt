@@ -47,3 +47,4 @@ GR_ADD_TEST(qa_golay_encoder_bb ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}
 GR_ADD_TEST(qa_parity_check_bb ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_parity_check_bb.py)
 GR_ADD_TEST(qa_discard_parity_errors_bb ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_discard_parity_errors_bb.py)
 GR_ADD_TEST(qa_golay_decoder_bb ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_golay_decoder_bb.py)
+GR_ADD_TEST(qa_frame_sync_bb ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_frame_sync_bb.py)
