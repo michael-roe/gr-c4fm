@@ -29,15 +29,17 @@ namespace gr {
     class frame_sync_bb_impl : public frame_sync_bb
     {
      private:
+       unsigned long long d_mask;
+       unsigned long long d_word;
+       unsigned long long d_sync;
        int d_frame_size;
        int d_sync_size;
-       int d_mask;
-       int d_sync;
+       int d_bps;
+       int d_symbol_mask;
        int d_todo;
-       int d_word;
 
      public:
-      frame_sync_bb_impl(int frame_size, int sync_size, int bps, int sync);
+      frame_sync_bb_impl(int frame_size, int sync_size, int bps, unsigned long long sync);
       ~frame_sync_bb_impl();
 
       // Where all the action really happens

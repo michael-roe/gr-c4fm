@@ -29,7 +29,7 @@ namespace gr {
   namespace c4fm {
 
     frame_sync_bb::sptr
-    frame_sync_bb::make(int frame_size, int sync_size, int bps, int sync)
+    frame_sync_bb::make(int frame_size, int sync_size, int bps, unsigned long long sync)
     {
       return gnuradio::get_initial_sptr
         (new frame_sync_bb_impl(frame_size, sync_size, bps, sync));
@@ -38,7 +38,7 @@ namespace gr {
     /*
      * The private constructor
      */
-    frame_sync_bb_impl::frame_sync_bb_impl(int frame_size, int sync_size, int bps, int sync)
+    frame_sync_bb_impl::frame_sync_bb_impl(int frame_size, int sync_size, int bps, unsigned long long sync)
       : gr::block("frame_sync_bb",
               gr::io_signature::make(1, 1, sizeof(char)),
               gr::io_signature::make(1, 1, sizeof(char)))
@@ -46,9 +46,11 @@ namespace gr {
       d_frame_size = frame_size;
       d_sync_size = sync_size;
       d_sync = sync;
+      d_bps = bps;
       d_word = 0;
       d_todo = 0;
-      d_mask = (1 << sync_size) - 1;
+      d_mask = (1ULL << (sync_size*bps)) - 1;
+      d_symbol_mask = (1 << bps) - 1;
     }
 
     /*
@@ -89,14 +91,14 @@ namespace gr {
 	}
         else if (d_todo > 0)
         {
-          d_word = (d_word << 1) | (*in & 0x1);
+          d_word = (d_word << d_bps) | (*in & d_symbol_mask);
 	  *in++;
 	  d_todo--;
         }
-	else if ((d_word & d_mask)!= d_sync)
+	else if ((d_word & d_mask) != d_sync)
         {
           /* fprintf(stderr, "Did not find sync word\n"); */
-	  d_word = (d_word << 1) | (*in & 0x1);
+	  d_word = (d_word << d_bps) | (*in & d_symbol_mask);
 	  *in++;
         }
 	else
