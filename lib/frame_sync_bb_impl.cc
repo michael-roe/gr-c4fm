@@ -99,6 +99,7 @@ namespace gr {
         {
           /* fprintf(stderr, "Did not find sync word\n"); */
 	  d_word = (d_word << d_bps) | (*in & d_symbol_mask);
+	  /* fprintf(stderr, "word = %llx\n", d_word); */
 	  *in++;
         }
 	else

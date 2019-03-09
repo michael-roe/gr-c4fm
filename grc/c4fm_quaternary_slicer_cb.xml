@@ -1,0 +1,15 @@
+<block>
+  <name>Quaternary Slicer</name>
+  <key>c4fm_quaternary_slicer_cb</key>
+  <category>[C4FM]</category>
+  <import>import c4fm</import>
+  <make>c4fm.quaternary_slicer_cb()</make>
+  <sink>
+    <name>in</name>
+    <type>complex</type>
+  </sink>
+  <source>
+    <name>out</name>
+    <type>byte</type>
+  </source>
+</block>
