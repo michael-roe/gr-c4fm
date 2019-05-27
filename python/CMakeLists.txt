@@ -49,3 +49,4 @@ GR_ADD_TEST(qa_discard_parity_errors_bb ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOU
 GR_ADD_TEST(qa_golay_decoder_bb ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_golay_decoder_bb.py)
 GR_ADD_TEST(qa_frame_sync_bb ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_frame_sync_bb.py)
 GR_ADD_TEST(qa_quaternary_slicer_cb ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_quaternary_slicer_cb.py)
+GR_ADD_TEST(qa_frame_sync_cc ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_frame_sync_cc.py)

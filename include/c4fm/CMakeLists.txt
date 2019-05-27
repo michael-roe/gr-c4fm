@@ -29,5 +29,6 @@ install(FILES
     discard_parity_errors_bb.h
     golay_decoder_bb.h
     frame_sync_bb.h
-    quaternary_slicer_cb.h DESTINATION include/c4fm
+    quaternary_slicer_cb.h
+    frame_sync_cc.h DESTINATION include/c4fm
 )
