@@ -46,7 +46,7 @@ namespace gr {
        * class. c4fm::frame_sync_cc::make is the public interface for
        * creating new instances.
        */
-      static sptr make(int frame_size, int sync_size, int bps, unsigned long long sync);
+      static sptr make(int frame_size, int sync_size, int bps, unsigned long long sync, double threshold);
     };
 
   } // namespace c4fm

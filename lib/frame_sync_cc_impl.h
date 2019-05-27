@@ -32,11 +32,12 @@ namespace gr {
        int d_frame_size;
        int d_sync_size;
        unsigned long long d_sync;
+       double d_threshold;
        int d_todo;
        int d_skip;
 
      public:
-      frame_sync_cc_impl(int frame_size, int sync_size, int bps, unsigned long long sync);
+      frame_sync_cc_impl(int frame_size, int sync_size, int bps, unsigned long long sync, double threshold);
       ~frame_sync_cc_impl();
 
       // Where all the action really happens

@@ -29,16 +29,16 @@ namespace gr {
   namespace c4fm {
 
     frame_sync_cc::sptr
-    frame_sync_cc::make(int frame_size, int sync_size, int bps, unsigned long long sync)
+    frame_sync_cc::make(int frame_size, int sync_size, int bps, unsigned long long sync, double threshold)
     {
       return gnuradio::get_initial_sptr
-        (new frame_sync_cc_impl(frame_size, sync_size, bps, sync));
+        (new frame_sync_cc_impl(frame_size, sync_size, bps, sync, threshold));
     }
 
     /*
      * The private constructor
      */
-    frame_sync_cc_impl::frame_sync_cc_impl(int frame_size, int sync_size, int bps, unsigned long long sync)
+    frame_sync_cc_impl::frame_sync_cc_impl(int frame_size, int sync_size, int bps, unsigned long long sync, double threshold)
       : gr::block("frame_sync_cc",
               gr::io_signature::make(1, 1, sizeof(gr_complex)),
               gr::io_signature::make(1, 1, sizeof(gr_complex)))
@@ -47,6 +47,7 @@ namespace gr {
       d_frame_size = frame_size;
       d_sync_size = sync_size;
       d_sync = sync;
+      d_threshold = threshold;
       d_skip = 0;
       d_todo = 0;
     }
@@ -105,12 +106,12 @@ namespace gr {
 	      correlation -= in[i+39-j].real();
 	    bit = bit << 1;
           }
-	  if (correlation > 24.0)
+	  if (correlation > d_threshold)
           {
             printf("d_skip*2 = %d\n", d_skip*2);
 	    d_skip = 0;
 	    d_todo = d_frame_size;
-            for (j=19; j>=0; j--)
+            for (j=d_sync_size-1; j>=0; j--)
 	      fprintf(stderr, "%d%d",
 	        in[39+i-j].real() > 0 ? 1 : 0,
 	        in[39+i-j].imag() > 0 ? 1 : 0);

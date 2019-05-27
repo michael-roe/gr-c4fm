@@ -3,7 +3,7 @@
   <key>c4fm_frame_sync_cc</key>
   <category>[C4FM]</category>
   <import>import c4fm</import>
-  <make>c4fm.frame_sync_cc($frame_size, $sync_size, $bps, $sync)</make>
+  <make>c4fm.frame_sync_cc($frame_size, $sync_size, $bps, $sync, $threshold)</make>
   <param>
     <name>Frame Size</name>
     <key>frame_size</key>
@@ -23,6 +23,11 @@
     <name>Sync Word</name>
     <key>sync</key>
     <type>int</type>
+  </param>
+  <param>
+    <name>Threshold</name>
+    <key>threshold</key>
+    <type>float</type>
   </param>
   <sink>
     <name>in</name>
