@@ -17,6 +17,7 @@
 #include "c4fm/frame_sync_bb.h"
 #include "c4fm/quaternary_slicer_cb.h"
 #include "c4fm/frame_sync_cc.h"
+#include "c4fm/crc16_bb.h"
 %}
 
 
@@ -38,3 +39,5 @@ GR_SWIG_BLOCK_MAGIC2(c4fm, frame_sync_bb);
 GR_SWIG_BLOCK_MAGIC2(c4fm, quaternary_slicer_cb);
 %include "c4fm/frame_sync_cc.h"
 GR_SWIG_BLOCK_MAGIC2(c4fm, frame_sync_cc);
+%include "c4fm/crc16_bb.h"
+GR_SWIG_BLOCK_MAGIC2(c4fm, crc16_bb);

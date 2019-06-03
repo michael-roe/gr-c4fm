@@ -30,5 +30,6 @@ install(FILES
     golay_decoder_bb.h
     frame_sync_bb.h
     quaternary_slicer_cb.h
-    frame_sync_cc.h DESTINATION include/c4fm
+    frame_sync_cc.h
+    crc16_bb.h DESTINATION include/c4fm
 )
