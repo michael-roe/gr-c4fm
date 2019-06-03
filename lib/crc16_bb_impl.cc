@@ -29,22 +29,23 @@ namespace gr {
   namespace c4fm {
 
     crc16_bb::sptr
-    crc16_bb::make(int check)
+    crc16_bb::make(int check, int length)
     {
       return gnuradio::get_initial_sptr
-        (new crc16_bb_impl(check));
+        (new crc16_bb_impl(check, length));
     }
 
     /*
      * The private constructor
      */
-    crc16_bb_impl::crc16_bb_impl(int check)
+    crc16_bb_impl::crc16_bb_impl(int check, int length)
       : gr::block("crc16_bb",
               gr::io_signature::make(1, 1, sizeof(char)),
               gr::io_signature::make(1, 1, sizeof(char)))
     {
-      set_output_multiple(32);
+      set_output_multiple(length);
       d_offset = 0;
+      d_length = length;
       d_crc_error_key = pmt::string_to_symbol("crc_error");
     }
 
@@ -58,7 +59,7 @@ namespace gr {
     void
     crc16_bb_impl::forecast (int noutput_items, gr_vector_int &ninput_items_required)
     {
-      ninput_items_required[0] = (noutput_items/32)*48;
+      ninput_items_required[0] = (noutput_items/d_length)*(d_length+16);
     }
 
     int
@@ -75,36 +76,36 @@ namespace gr {
       unsigned int feedback;
       unsigned int crc;
 
-      blocks = noutput_items/32;
+      blocks = noutput_items/d_length;
 
       for (i=0; i<blocks; i++)
       {
 	crc = 0;
-        for (j=0; j<32; j++)
+        for (j=0; j<d_length; j++)
         {
-          out[i*32+j] = in[i*48+j];
-	  feedback = in[i*48+j] ^ (crc >> 15);
+          out[i*d_length+j] = in[i*(d_length+16)+j];
+	  feedback = in[i*(d_length+16)+j] ^ (crc >> 15);
 	  crc = (crc << 1) & 0xffff;
 	  if (feedback)
 	    crc ^= 1 | (1 << 5) | (1 << 12);
 	}
-	for (j=32; j<48; j++)
+	for (j=d_length; j<d_length+16; j++)
         {
-          feedback = in[i*48+j] ^ (crc >> 15) ^ 0x1;
+          feedback = in[i*(d_length+16)+j] ^ (crc >> 15) ^ 0x1;
 	  crc = (crc << 1) & 0xffff;
 	  if (feedback)
             crc ^= 1 | (1 << 5) | (1 << 12);
 	}
         if (crc != 0)
-          add_item_tag(0, d_offset+i*32, d_crc_error_key, pmt::PMT_T);
+          add_item_tag(0, d_offset+i*d_length, d_crc_error_key, pmt::PMT_T);
 	else
-          add_item_tag(0, d_offset+i*32, d_crc_error_key, pmt::PMT_F);
+          add_item_tag(0, d_offset+i*d_length, d_crc_error_key, pmt::PMT_F);
       }
 
 
       // Tell runtime system how many input items we consumed on
       // each input stream.
-      consume_each (blocks*48);
+      consume_each (blocks*(d_length+16));
 
       d_offset += noutput_items;
 

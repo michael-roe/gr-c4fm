@@ -30,10 +30,11 @@ namespace gr {
     {
      private:
       int d_offset;
+      int d_length;
       pmt::pmt_t d_crc_error_key;
 
      public:
-      crc16_bb_impl(int check);
+      crc16_bb_impl(int check, int length);
       ~crc16_bb_impl();
 
       // Where all the action really happens

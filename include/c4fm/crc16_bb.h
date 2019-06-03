@@ -46,7 +46,7 @@ namespace gr {
        * class. c4fm::crc16_bb::make is the public interface for
        * creating new instances.
        */
-      static sptr make(int check);
+      static sptr make(int check, int length);
     };
 
   } // namespace c4fm
