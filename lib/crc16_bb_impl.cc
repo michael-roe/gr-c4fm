@@ -44,6 +44,7 @@ namespace gr {
               gr::io_signature::make(1, 1, sizeof(char)))
     {
       set_output_multiple(length);
+      set_tag_propagation_policy(TPP_DONT);
       d_offset = 0;
       d_length = length;
       d_crc_error_key = pmt::string_to_symbol("crc_error");
@@ -70,11 +71,14 @@ namespace gr {
     {
       const char *in = (const char *) input_items[0];
       char *out = (char *) output_items[0];
+      std::vector<tag_t> tags;
       int blocks;
       int i;
       int j;
       unsigned int feedback;
       unsigned int crc;
+      int block_num;
+      int block_offset;
 
       blocks = noutput_items/d_length;
 
@@ -102,6 +106,19 @@ namespace gr {
           add_item_tag(0, d_offset+i*d_length, d_crc_error_key, pmt::PMT_F);
       }
 
+
+      get_tags_in_range(tags, 0, nitems_read(0), nitems_read(0)+blocks*(d_length+16));
+      for (i=0; i<tags.size(); i++)
+      {
+	block_num = tags[i].offset/(d_length+16);
+	block_offset = tags[i].offset - block_num*(d_length+16);
+	if (block_offset >= d_length)
+        {
+          fprintf(stderr, "CRC16: tag is on CRC\n");
+          block_offset = d_length - 1;
+	}
+	add_item_tag(0, d_length*block_num+block_offset, tags[i].key, tags[i].value);
+      }
 
       // Tell runtime system how many input items we consumed on
       // each input stream.
