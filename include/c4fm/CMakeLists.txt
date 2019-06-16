@@ -31,5 +31,6 @@ install(FILES
     frame_sync_bb.h
     quaternary_slicer_cb.h
     frame_sync_cc.h
-    crc16_bb.h DESTINATION include/c4fm
+    crc16_bb.h
+    whiten_ff.h DESTINATION include/c4fm
 )
