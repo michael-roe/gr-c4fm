@@ -19,6 +19,7 @@
 #include "c4fm/frame_sync_cc.h"
 #include "c4fm/crc16_bb.h"
 #include "c4fm/whiten_ff.h"
+#include "c4fm/pad_missing_bb.h"
 %}
 
 
@@ -44,3 +45,5 @@ GR_SWIG_BLOCK_MAGIC2(c4fm, frame_sync_cc);
 GR_SWIG_BLOCK_MAGIC2(c4fm, crc16_bb);
 %include "c4fm/whiten_ff.h"
 GR_SWIG_BLOCK_MAGIC2(c4fm, whiten_ff);
+%include "c4fm/pad_missing_bb.h"
+GR_SWIG_BLOCK_MAGIC2(c4fm, pad_missing_bb);

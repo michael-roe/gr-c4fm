@@ -28,5 +28,6 @@ install(FILES
     c4fm_quaternary_slicer_cb.xml
     c4fm_frame_sync_cc.xml
     c4fm_crc16_bb.xml
-    c4fm_whiten_ff.xml DESTINATION share/gnuradio/grc/blocks
+    c4fm_whiten_ff.xml
+    c4fm_pad_missing_bb.xml DESTINATION share/gnuradio/grc/blocks
 )

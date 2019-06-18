@@ -52,3 +52,4 @@ GR_ADD_TEST(qa_quaternary_slicer_cb ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_
 GR_ADD_TEST(qa_frame_sync_cc ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_frame_sync_cc.py)
 GR_ADD_TEST(qa_crc16_bb ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_crc16_bb.py)
 GR_ADD_TEST(qa_whiten_ff ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_whiten_ff.py)
+GR_ADD_TEST(qa_pad_missing_bb ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_pad_missing_bb.py)

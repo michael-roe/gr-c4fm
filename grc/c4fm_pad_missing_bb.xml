@@ -1,0 +1,20 @@
+<block>
+  <name>Pad missing frames</name>
+  <key>c4fm_pad_missing_bb</key>
+  <category>[C4FM]</category>
+  <import>import c4fm</import>
+  <make>c4fm.pad_missing_bb($length)</make>
+  <param>
+    <name>Length</name>
+    <key>length</key>
+    <type>int</type>
+  </param>
+  <sink>
+    <name>in</name>
+    <type>byte</type>
+  </sink>
+  <source>
+    <name>out</name>
+    <type>byte</type>
+  </source>
+</block>
