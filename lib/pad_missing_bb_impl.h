@@ -29,6 +29,7 @@ namespace gr {
     class pad_missing_bb_impl : public pad_missing_bb
     {
      private:
+      unsigned long long d_offset;
       int d_length;
       int d_pad;
       int d_copy;

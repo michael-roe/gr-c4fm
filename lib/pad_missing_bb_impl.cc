@@ -45,6 +45,7 @@ namespace gr {
     
     {
       set_tag_propagation_policy(TPP_DONT);
+      d_offset = 0;
       d_length = length;
       d_pad = 0;
       d_copy = 0;
@@ -75,6 +76,7 @@ namespace gr {
       int produced = 0;
       int consumed = 0;
       int tag_index = 0;
+      int tag_index2;
       int frame_number;
       std::vector<tag_t> tags;
 
@@ -84,6 +86,11 @@ namespace gr {
       {
         if (d_pad > 0)
         {
+	  if (d_pad == d_length)
+          {
+            add_item_tag(0, d_offset + produced, pmt::intern("frame_number"),
+	      pmt::from_long(d_frame));
+          }
           *out = 0xff;
 	  out++;
 	  produced++;
@@ -91,6 +98,13 @@ namespace gr {
   	}
 	else if (d_copy > 0)
 	{
+	  while ((tag_index < tags.size()) &&
+	    (tags[tag_index].offset == nitems_read(0) + consumed))
+	  {
+	    add_item_tag(0, d_offset + produced, tags[tag_index].key,
+	      tags[tag_index].value);
+	    tag_index++;
+	  }
 	  *out = *in;
 	  out++;
 	  in++;
@@ -100,19 +114,20 @@ namespace gr {
 	}
 	else
 	{
-          while ((tag_index < tags.size()) &&
-	    ! pmt::equal(pmt::intern("frame_number"), tags[tag_index].key))
+	  tag_index2 = tag_index;
+          while ((tag_index2 < tags.size()) &&
+	    ! pmt::equal(pmt::intern("frame_number"), tags[tag_index2].key))
 	  {
-	    tag_index++;
+	    tag_index2++;
 	  }
-	  if (tag_index >= tags.size())
+	  if (tag_index2 >= tags.size())
 	  {
 	    fprintf(stderr, "pad_missing: tag not found\n");
 	  }
 	  else
 	  {
-	    fprintf(stderr, "FN = %d\n", pmt::to_long(tags[tag_index].value));
-	    frame_number = pmt::to_long(tags[tag_index].value);
+	    /* fprintf(stderr, "FN = %d\n", pmt::to_long(tags[tag_index2].value)); */
+	    frame_number = pmt::to_long(tags[tag_index2].value);
 	    if ((d_frame >= 0) && (frame_number != ((d_frame + 1) & 0x7)))
 	    {
 	      fprintf(stderr, "Missing frame!\n");
@@ -123,7 +138,6 @@ namespace gr {
             {
 	      d_copy = d_length;
 	      d_frame = frame_number;
-	      tag_index++;
 	    }
 	  }
         }
@@ -132,6 +146,8 @@ namespace gr {
       // Tell runtime system how many input items we consumed on
       // each input stream.
       consume_each (consumed);
+
+      d_offset += noutput_items;
 
       // Tell runtime system how many output items we produced.
       return noutput_items;
