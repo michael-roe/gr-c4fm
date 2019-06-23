@@ -44,6 +44,7 @@ namespace gr {
               gr::io_signature::make(1, 1, sizeof(gr_complex)))
     {
       set_history(40);
+      d_offset = 0;
       d_frame_size = frame_size;
       d_sync_size = sync_size;
       d_sync = sync;
@@ -108,14 +109,22 @@ namespace gr {
           }
 	  if (correlation > d_threshold)
           {
-            printf("d_skip*2 = %d\n", d_skip*2);
+	    add_item_tag(0, d_offset + produced, pmt::intern("correlation"),
+	      pmt::from_float(correlation));
+	    if (d_skip > d_sync_size)
+            {
+	      add_item_tag(0, d_offset + produced, pmt::intern("skip"),
+	        pmt::from_long(d_skip - d_sync_size));
+	    }
 	    d_skip = 0;
 	    d_todo = d_frame_size;
+#if 0
             for (j=d_sync_size-1; j>=0; j--)
 	      fprintf(stderr, "%d%d",
 	        in[39+i-j].real() > 0 ? 1 : 0,
 	        in[39+i-j].imag() > 0 ? 1 : 0);
 	    fprintf(stderr, " %f\n", correlation);
+#endif
 	  }
 	}
       }
@@ -124,6 +133,8 @@ namespace gr {
       // Tell runtime system how many input items we consumed on
       // each input stream.
       consume_each (noutput_items);
+
+      d_offset += produced;
 
       // Tell runtime system how many output items we produced.
       return produced;

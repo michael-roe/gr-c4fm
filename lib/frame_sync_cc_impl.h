@@ -29,6 +29,7 @@ namespace gr {
     class frame_sync_cc_impl : public frame_sync_cc
     {
      private:
+       unsigned long long d_offset;
        int d_frame_size;
        int d_sync_size;
        unsigned long long d_sync;
