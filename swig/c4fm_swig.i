@@ -20,6 +20,7 @@
 #include "c4fm/crc16_bb.h"
 #include "c4fm/whiten_ff.h"
 #include "c4fm/pad_missing_bb.h"
+#include "c4fm/crc16_encode_bb.h"
 %}
 
 
@@ -47,3 +48,5 @@ GR_SWIG_BLOCK_MAGIC2(c4fm, crc16_bb);
 GR_SWIG_BLOCK_MAGIC2(c4fm, whiten_ff);
 %include "c4fm/pad_missing_bb.h"
 GR_SWIG_BLOCK_MAGIC2(c4fm, pad_missing_bb);
+%include "c4fm/crc16_encode_bb.h"
+GR_SWIG_BLOCK_MAGIC2(c4fm, crc16_encode_bb);

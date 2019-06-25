@@ -1,0 +1,20 @@
+<block>
+  <name>CRC16 Encode</name>
+  <key>c4fm_crc16_encode_bb</key>
+  <category>[C4FM]</category>
+  <import>import c4fm</import>
+  <make>c4fm.crc16_encode_bb($length)</make>
+  <param>
+    <name>Length</name>
+    <key>length</key>
+    <type>int</type>
+  </param>
+  <sink>
+    <name>in</name>
+    <type>byte</type>
+  </sink>
+  <source>
+    <name>out</name>
+    <type>byte</type>
+  </source>
+</block>

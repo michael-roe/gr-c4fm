@@ -33,5 +33,6 @@ install(FILES
     frame_sync_cc.h
     crc16_bb.h
     whiten_ff.h
-    pad_missing_bb.h DESTINATION include/c4fm
+    pad_missing_bb.h
+    crc16_encode_bb.h DESTINATION include/c4fm
 )
