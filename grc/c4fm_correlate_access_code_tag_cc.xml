@@ -1,0 +1,30 @@
+<block>
+  <name>Correlate access code tag</name>
+  <key>c4fm_correlate_access_code_tag_cc</key>
+  <category>[C4FM]</category>
+  <import>import c4fm</import>
+  <make>c4fm.correlate_access_code_tag_cc($sync_len, $sync, $threshold)</make>
+  <param>
+    <name>Sync len</name>
+    <key>sync_len</key>
+    <type>int</type>
+  </param>
+  <param>
+    <name>Sync Word</name>
+    <key>sync</key>
+    <type>int</type>
+  </param>
+  <param>
+    <name>Threshold</name>
+    <key>threshold</key>
+    <type>real</type>
+  </param>
+  <sink>
+    <name>in</name>
+    <type>complex</type>
+  </sink>
+  <source>
+    <name>out</name>
+    <type>complex</type>
+  </source>
+</block>

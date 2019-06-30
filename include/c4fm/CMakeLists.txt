@@ -34,5 +34,6 @@ install(FILES
     crc16_bb.h
     whiten_ff.h
     pad_missing_bb.h
-    crc16_encode_bb.h DESTINATION include/c4fm
+    crc16_encode_bb.h
+    correlate_access_code_tag_cc.h DESTINATION include/c4fm
 )
