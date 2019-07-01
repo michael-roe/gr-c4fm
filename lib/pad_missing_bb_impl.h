@@ -31,6 +31,7 @@ namespace gr {
      private:
       unsigned long long d_offset;
       int d_length;
+      int d_subframes;
       int d_pad;
       int d_copy;
       int d_frame;

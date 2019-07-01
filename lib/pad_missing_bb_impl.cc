@@ -47,6 +47,7 @@ namespace gr {
       set_tag_propagation_policy(TPP_DONT);
       d_offset = 0;
       d_length = length;
+      d_subframes = 5;
       d_pad = 0;
       d_copy = 0;
       d_frame = -1;
@@ -90,6 +91,11 @@ namespace gr {
           {
             add_item_tag(0, d_offset + produced, pmt::intern("frame_number"),
 	      pmt::from_long(d_frame));
+          }
+	  if ((d_length - d_pad) % (d_length/d_subframes) == 0)
+          {
+	    add_item_tag(0, d_offset + produced, pmt::intern("deleted_frame"),
+	      pmt::PMT_T);
           }
           *out = 0xff;
 	  out++;
