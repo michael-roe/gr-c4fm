@@ -32,6 +32,9 @@ namespace gr {
       unsigned long long d_sync;
       unsigned long long d_offset;
       double d_threshold;
+      double d_threshold2;
+      int d_length;
+      int d_skip;
 
      public:
       correlate_access_code_tag_cc_impl(int sync_len, unsigned long long sync, double threshold);

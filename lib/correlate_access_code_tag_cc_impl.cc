@@ -46,7 +46,10 @@ namespace gr {
       set_history(21);
       d_sync = sync;
       d_threshold = threshold;
+      d_threshold2 = 15.0;
+      d_length = 480;
       d_offset = 0;
+      d_skip = 0;
     }
 
     /*
@@ -90,7 +93,27 @@ namespace gr {
 	{
           add_item_tag(0, d_offset + i, pmt::intern("correlation"),
 	    pmt::from_double(correlation));
+	  if (d_skip != d_length)
+          {
+	    add_item_tag(0, d_offset + i, pmt::intern("skip"),
+              pmt::from_long(d_skip - d_length));
+          }
+	  d_skip = 0;
 	}
+	else if ((d_skip >= d_length) && (d_skip < d_length + 2) & (correlation > d_threshold2))
+        {
+	  add_item_tag(0, d_offset + i, pmt::intern("correlation"),
+            pmt::from_double(correlation));
+	  add_item_tag(0, d_offset + i, pmt::intern("low_correlation"),
+	    pmt::from_double(correlation));
+          if (d_skip != d_length)
+          {
+            add_item_tag(0, d_offset + i, pmt::intern("skip"),
+              pmt::from_long(d_skip - d_length));
+          }
+          d_skip = 0;
+	}
+	d_skip++;
       }
 
       d_offset += noutput_items;
