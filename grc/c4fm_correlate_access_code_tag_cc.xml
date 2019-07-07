@@ -3,7 +3,7 @@
   <key>c4fm_correlate_access_code_tag_cc</key>
   <category>[C4FM]</category>
   <import>import c4fm</import>
-  <make>c4fm.correlate_access_code_tag_cc($sync_len, $sync, $threshold)</make>
+  <make>c4fm.correlate_access_code_tag_cc($sync_len, $sync, $length, $threshold, $threshold2)</make>
   <param>
     <name>Sync len</name>
     <key>sync_len</key>
@@ -15,8 +15,18 @@
     <type>int</type>
   </param>
   <param>
+    <name>Frame Length</name>
+    <key>length</key>
+    <type>int</type>
+  </param>
+  <param>
     <name>Threshold</name>
     <key>threshold</key>
+    <type>real</type>
+  </param>
+  <param>
+    <name>Threshold2</name>
+    <key>threshold2</key>
     <type>real</type>
   </param>
   <sink>

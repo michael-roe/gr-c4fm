@@ -29,16 +29,16 @@ namespace gr {
   namespace c4fm {
 
     correlate_access_code_tag_cc::sptr
-    correlate_access_code_tag_cc::make(int sync_len, unsigned long long sync, double threshold)
+    correlate_access_code_tag_cc::make(int sync_len, unsigned long long sync, int length, double threshold, double threshold2)
     {
       return gnuradio::get_initial_sptr
-        (new correlate_access_code_tag_cc_impl(sync_len, sync, threshold));
+        (new correlate_access_code_tag_cc_impl(sync_len, sync, length, threshold, threshold2));
     }
 
     /*
      * The private constructor
      */
-    correlate_access_code_tag_cc_impl::correlate_access_code_tag_cc_impl(int sync_len, unsigned long long sync, double threshold)
+    correlate_access_code_tag_cc_impl::correlate_access_code_tag_cc_impl(int sync_len, unsigned long long sync, int length, double threshold, double threshold2)
       : gr::sync_block("correlate_access_code_tag_cc",
               gr::io_signature::make(1, 1, sizeof(gr_complex)),
               gr::io_signature::make(1, 1, sizeof(gr_complex)))
@@ -46,8 +46,8 @@ namespace gr {
       set_history(21);
       d_sync = sync;
       d_threshold = threshold;
-      d_threshold2 = 15.0;
-      d_length = 480;
+      d_threshold2 = threshold2;
+      d_length = length;
       d_offset = 0;
       d_skip = 0;
     }

@@ -46,7 +46,7 @@ namespace gr {
        * class. c4fm::correlate_access_code_tag_cc::make is the public interface for
        * creating new instances.
        */
-      static sptr make(int sync_len, unsigned long long sync, double threshold);
+      static sptr make(int sync_len, unsigned long long sync, int length, double threshold, double threshold2);
     };
 
   } // namespace c4fm

@@ -37,7 +37,7 @@ namespace gr {
       int d_skip;
 
      public:
-      correlate_access_code_tag_cc_impl(int sync_len, unsigned long long sync, double threshold);
+      correlate_access_code_tag_cc_impl(int sync_len, unsigned long long sync, int length, double threshold, double threshold2);
       ~correlate_access_code_tag_cc_impl();
 
       // Where all the action really happens
