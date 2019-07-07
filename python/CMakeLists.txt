@@ -55,3 +55,4 @@ GR_ADD_TEST(qa_whiten_ff ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_whi
 GR_ADD_TEST(qa_pad_missing_bb ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_pad_missing_bb.py)
 GR_ADD_TEST(qa_crc16_encode_bb ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_crc16_encode_bb.py)
 GR_ADD_TEST(qa_correlate_access_code_tag_cc ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_correlate_access_code_tag_cc.py)
+GR_ADD_TEST(qa_dupe_skipped_cc ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_dupe_skipped_cc.py)

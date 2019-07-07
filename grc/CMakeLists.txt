@@ -31,5 +31,6 @@ install(FILES
     c4fm_whiten_ff.xml
     c4fm_pad_missing_bb.xml
     c4fm_crc16_encode_bb.xml
-    c4fm_correlate_access_code_tag_cc.xml DESTINATION share/gnuradio/grc/blocks
+    c4fm_correlate_access_code_tag_cc.xml
+    c4fm_dupe_skipped_cc.xml DESTINATION share/gnuradio/grc/blocks
 )

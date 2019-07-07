@@ -1,0 +1,15 @@
+<block>
+  <name>Duplicated Skipped</name>
+  <key>c4fm_dupe_skipped_cc</key>
+  <category>[C4FM]</category>
+  <import>import c4fm</import>
+  <make>c4fm.dupe_skipped_cc()</make>
+  <sink>
+    <name>in</name>
+    <type>complex</type>
+  </sink>
+  <source>
+    <name>out</name>
+    <type>complex</type>
+  </source>
+</block>
