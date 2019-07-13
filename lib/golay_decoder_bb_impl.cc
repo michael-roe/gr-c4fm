@@ -69,6 +69,7 @@ namespace gr {
       int parity;
       unsigned int s;
       unsigned int w1;
+      int burst;
 
       w1 = 1 | (1 << 2) | (1 << 4) | (1 << 5) | (1 << 6) | (1 << 10) | (1 << 11);
 
@@ -97,9 +98,10 @@ namespace gr {
 	}
 	parity ^= in[24*i+23];
 
-	/* If the error is in only one bit, correct it */
+	burst = 0;
 	if (parity)
 	{
+	  /* If the error is in only one bit, correct it */
 	  switch (s)
 	  {
 	    case 0:
@@ -116,70 +118,287 @@ namespace gr {
 	    case 1024:
               s = 0;
 	      parity = 0;
+	      burst = 1;
 	      break;
 	    case 1594:
 	      out[12*i] ^= 1;
 	      s = 0;
 	      parity = 0;
+	      burst = 1;
 	      break;
 	    case 797:
 	      out[12*i + 1] ^= 1;
 	      s = 0;
 	      parity = 0;
+	      burst = 1;
 	      break;
 	    case 1972:
 	      out[12*i + 2] ^= 1;
 	      s = 0;
 	      parity = 0;
+	      burst = 1;
 	      break;
 	    case 986:
 	      out[12*i + 3] ^= 1;
               s = 0;
               parity = 0;
+	      burst = 1;
               break;
             case 493:
 	      out[12*i + 4] ^= 1;
               s = 0;
               parity = 0;
+	      burst = 1;
               break;
             case 1740:
 	      out[12*i + 5] ^= 1;
               s = 0;
               parity = 0;
+	      burst = 1;
               break;
             case 870:
 	      out[12*i + 6] ^= 1;
               s = 0;
               parity = 0;
+	      burst = 1;
               break;
 	    case 435:
 	      out[12*i + 7] ^= 1;
               s = 0;
               parity = 0;
+	      burst = 1;
               break;
             case 1763:
 	      out[12*i + 8] ^= 1;
               s = 0;
               parity = 0;
+	      burst = 1;
               break;
 	    case 1355:
 	      out[12*i + 9] ^= 1;
               s = 0;
               parity = 0;
+	      burst = 1;
               break;
 	    case 1183:
 	      out[12*i + 10] ^= 1;
               s = 0;
               parity = 0;
+	      burst = 1;
               break;
 	    case 1141:
 	      out[12*i + 11] ^= 1;
               s = 0;
               parity = 0;
+	      burst = 1;
               break;
+	    /* Correct 3 bit burst errors */
+	    case 1789:
+	      out[12*i] ^= 1;
+	      out[12*i + 1] ^= 1;
+	      out[12*i + 3] ^= 1;
+	      s = 0;
+	      parity = 0;
+	      burst = 4;
+	      break;
+	    case 1348:
+	      out[12*i + 1] ^= 1;
+	      out[12*i + 2] ^= 1;
+	      out[12*i + 4] ^= 1;
+	      s = 0;
+	      parity = 0;
+	      burst = 4;
+	      break;
+	    case 674:
+	      out[12*i + 2] ^= 1;
+	      out[12*i + 3] ^= 1;
+	      out[12*i + 5] ^= 1;
+	      s = 0;
+	      parity = 0;
+	      burst = 4;
+	      break;
+	    case 337:
+	      out[12*i + 3] ^= 1;
+	      out[12*i + 4] ^= 1;
+	      out[12*i + 6] ^= 1;
+	      s = 0;
+	      parity = 0;
+	      burst = 4;
+	      break;
+	    case 1682:
+	      out[12*i + 4] ^= 1;
+	      out[12*i + 5] ^= 1;
+	      out[12*i + 7] ^= 1;
+	      s = 0;
+	      parity = 0;
+	      burst = 4;
+	      break;
+	    case 841:
+	      out[12*i + 5] ^= 1;
+	      out[12*i + 6] ^= 1;
+	      out[12*i + 8] ^= 1;
+	      s = 0;
+	      parity = 0;
+	      burst = 4;
+	      break;
+	    case 1950:
+	      out[12*i + 6] ^= 1;
+	      out[12*i + 7] ^= 1;
+	      out[12*i + 9] ^= 1;
+	      s = 0;
+	      parity = 0;
+	      burst = 4;
+	      break;
+	    case 975:
+	      out[12*i + 7] ^= 1;
+	      out[12*i + 8] ^= 1;
+	      out[12*i + 10] ^= 1;
+	      s = 0;
+	      parity = 0;
+	      burst = 4;
+	      break;
+	    case 2013:
+	      out[12*i + 8] ^= 1;
+	      out[12*i + 9] ^= 1;
+	      out[12*i + 11] ^= 1;
+	      s = 0;
+	      parity = 0;
+	      burst = 4;
+	      break;
+	    case 1492:
+	      out[12*i + 9] ^= 1;
+	      out[12*i + 10] ^= 1;
+	      s = 0;
+	      parity = 0;
+	      burst = 4;
+	      break;
+	    case 746:
+	      out[12*i + 10] ^= 1;
+	      out[12*i + 11] ^= 1;
+	      s = 0;
+	      parity = 0;
+	      burst = 4;
+	      break;
+	    case 373:
+	      out[12*i + 11] ^= 1;
+	      s = 0;
+	      parity = 0;
+	      burst = 4;
+	      break;
+	    case 1664:
+	    case 832:
+	    case 416:
+	    case 208:
+	    case 104:
+	    case 52:
+	    case 26:
+	    case 13:
+	    case 6:
+	      s = 0;
+	      parity = 0;
+	      burst = 4;
+	      break;
 	    default:
 	      break;
           }
+	}
+	else
+	{
+          switch (s)
+	  {
+	    case 1:
+	    case 3:
+	    case 6:
+	    case 12:
+	    case 24:
+	    case 48:
+	    case 96:
+	    case 192:
+	    case 384:
+	    case 768:
+	    case 1536:
+	      s = 0;
+	      burst = 2;
+	      break;
+	    case 117:
+	      out[12*i + 11] ^= 1;
+	      s = 0;
+	      burst = 2;
+	      break;
+	    case 1319:
+              out[12*i] ^= 0x01;
+	      out[12*i + 1] ^= 0x1;
+              s = 0;
+	      burst = 2;
+              break;
+	    case 1193:
+	      out[12*i + 1] ^= 1;
+	      out[12*i + 2] ^= 1;
+	      s = 0;
+	      burst = 2;
+	      break;
+	    case 1134:
+	      out[12*i + 2] ^= 1;
+	      out[12*i + 3] ^= 1;
+	      s = 0;
+	      burst = 2;
+	      break;
+	    case 567:
+	      out[12*i + 3] ^= 1;
+	      out[12*i + 4] ^= 1;
+	      s = 0;
+	      burst = 2;
+	      break;
+	    case 1825:
+	      out[12*i + 4] ^= 1;
+	      out[12*i + 5] ^= 1;
+	      s = 0;
+	      burst = 2;
+	      break;
+	    case 1450:
+	      out[12*i + 5] ^= 1;
+	      out[12*i + 6] ^= 1;
+	      s = 0;
+	      burst = 2;
+	      break;
+	    case 725:
+	      out[12*i + 6] ^= 1;
+	      out[12*i + 7] ^= 1;
+	      s = 0;
+	      burst = 2;
+	      break;
+	    case 1872:
+	      out[12*i + 7] ^= 1;
+	      out[12*i + 8] ^= 1;
+	      s = 0;
+	      break;
+	    case 936:
+	      out[12*i + 8] ^= 1;
+	      out[12*i + 9] ^= 1;
+	      s = 0;
+	      burst = 2;
+	      break;
+	    case 468:
+	      out[12*i + 9] ^= 1;
+              out[12*i + 10] ^= 1;
+	      s = 0;
+	      burst = 2;
+	      break;
+	    case 234:
+	      out[12*i + 10] ^= 1;
+              out[12*i + 11] ^= 1;
+	      s = 0;
+	      burst = 2;
+	      break;
+
+	    default:
+	      break;
+          }
+	}
+
+	if (burst != 0)
+        {
+	  add_item_tag(0, d_offset+i*12, pmt::intern("burst"), pmt::from_long(burst));
 	}
 
 	if ((s != 0) || (parity != 0))
