@@ -36,5 +36,6 @@ install(FILES
     pad_missing_bb.h
     crc16_encode_bb.h
     correlate_access_code_tag_cc.h
-    dupe_skipped_cc.h DESTINATION include/c4fm
+    dupe_skipped_cc.h
+    burst_length_bb.h DESTINATION include/c4fm
 )

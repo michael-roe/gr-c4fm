@@ -23,6 +23,7 @@
 #include "c4fm/crc16_encode_bb.h"
 #include "c4fm/correlate_access_code_tag_cc.h"
 #include "c4fm/dupe_skipped_cc.h"
+#include "c4fm/burst_length_bb.h"
 %}
 
 
@@ -56,3 +57,5 @@ GR_SWIG_BLOCK_MAGIC2(c4fm, crc16_encode_bb);
 GR_SWIG_BLOCK_MAGIC2(c4fm, correlate_access_code_tag_cc);
 %include "c4fm/dupe_skipped_cc.h"
 GR_SWIG_BLOCK_MAGIC2(c4fm, dupe_skipped_cc);
+%include "c4fm/burst_length_bb.h"
+GR_SWIG_BLOCK_MAGIC2(c4fm, burst_length_bb);
