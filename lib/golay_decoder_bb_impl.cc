@@ -193,6 +193,25 @@ namespace gr {
 	      burst = 1;
               break;
 	    /* Correct 3 bit burst errors */
+	    case 659:
+	      out[12*i] ^= 1;
+	      out[12*i + 1] ^= 1;
+	      out[12*i + 2] ^= 1;
+	      s = 0;
+	      parity = 0;
+	      burst = 3;
+	      fprintf(stderr, "correcting syndrom 659\n");
+	      break;
+	    case 1907:
+	      out[12*i + 1] ^= 1;
+              out[12*i + 2] ^= 1;
+              out[12*i + 3] ^= 1;
+              s = 0;
+	      parity = 0;
+	      burst = 3;
+	      fprintf(stderr, "correcting syndrom 1907\n");
+	      break;
+	    /* Burst is length 4, weight 3 */
 	    case 1789:
 	      out[12*i] ^= 1;
 	      out[12*i + 1] ^= 1;
@@ -389,6 +408,13 @@ namespace gr {
               out[12*i + 11] ^= 1;
 	      s = 0;
 	      burst = 2;
+	      break;
+
+	    case 398:
+	      out[12*i] ^= 1;
+	      out[12*i + 2] ^= 1;
+              s = 0;
+	      burst = 3;
 	      break;
 
 	    default:
