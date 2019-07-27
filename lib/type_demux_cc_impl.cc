@@ -43,11 +43,13 @@ namespace gr {
               gr::io_signature::make(1, 1, sizeof(gr_complex)),
               gr::io_signature::make(1, 1, sizeof(gr_complex)))
     {
+      set_tag_propagation_policy(TPP_DONT);
       d_length = length;
       d_frame_type = frame_type;
       d_data_type = data_type;
       d_skip = 0;
       d_copy = 0;
+      d_offset = 0;
     }
 
     /*
@@ -77,14 +79,28 @@ namespace gr {
       int consumed;
       int frame_type;
       int data_type;
+      int next_tag;
+      int tag_index;
       std::vector<tag_t> tags;
+
+      get_tags_in_range(tags, 0, nitems_read(0), nitems_read(0) + noutput_items);
+      /* fprintf(stderr, "%ld tags found\n", tags.size()); */
+      /* if (tags.size() > 0)
+        fprintf(stderr, "offset to first tag = %ld\n", tags[0].offset - nitems_read(0)); */
 
       produced = 0;
       consumed = 0;
+      next_tag = 0;
+
       for (i=0; i<noutput_items; i++)
       {
         if (d_skip > 0)
         {
+          while ((next_tag < tags.size()) && (tags[next_tag].offset == nitems_read(0) + consumed))
+          {
+            /* fprintf(stderr, "skipping tag\n"); */
+	    next_tag++;
+          }
           in++;
 	  consumed++;
 	  d_skip--;
@@ -92,6 +108,12 @@ namespace gr {
 	else if (d_copy > 0)
 	{
 	  *out = *in;
+	  while ((next_tag < tags.size()) && (tags[next_tag].offset == nitems_read(0) + consumed))
+	  {
+	    /* fprintf(stderr, "copying tag\n"); */
+	    add_item_tag(0, d_offset + produced, tags[next_tag].key, tags[next_tag].value);
+	    next_tag++;
+	  }
 	  in++;
 	  out++;
 	  d_copy--;
@@ -100,16 +122,16 @@ namespace gr {
 	}
 	else
 	{
-	  get_tags_in_range(tags, 0, nitems_read(0) + consumed, nitems_read(0)+consumed+1);
-	  /* fprintf(stderr, "%ld tags found\n", tags.size()); */
 	  frame_type = -1;
 	  data_type = -1;
-	  for (j=0; j<tags.size(); j++)
+	  tag_index = next_tag;
+	  while ((tag_index < tags.size()) && (tags[tag_index].offset == nitems_read(0) + consumed))
 	  {
-	    if (pmt::equal(pmt::intern("frame_type"), tags[j].key))
-	      frame_type = pmt::to_long(tags[j].value);
-	    else if (pmt::equal(pmt::intern("data_type"), tags[j].key))
-              data_type = pmt::to_long(tags[j].value);
+	    if (pmt::equal(pmt::intern("frame_type"), tags[tag_index].key))
+	      frame_type = pmt::to_long(tags[tag_index].value);
+	    else if (pmt::equal(pmt::intern("data_type"), tags[tag_index].key))
+              data_type = pmt::to_long(tags[tag_index].value);
+	    tag_index++;
 	  }
 	  /* fprintf(stderr, "frame_type = %d\n", frame_type); */
 	  /* fprintf(stderr, "data_type = %d\n", data_type); */
@@ -125,6 +147,12 @@ namespace gr {
 	  {
 	    d_copy = d_length;
 	    *out = *in;
+	    while ((next_tag < tags.size()) && (tags[next_tag].offset == nitems_read(0) + consumed))
+	    {
+	      /* fprintf(stderr, "copying tag (start)\n"); */
+	      add_item_tag(0, d_offset + produced, tags[next_tag].key, tags[next_tag].value);
+	      next_tag++;
+	    }
 	    out++;
 	    in++;
 	    d_copy--;
@@ -134,12 +162,20 @@ namespace gr {
 	  else
 	  {
 	    d_skip = d_length;
+	    while ((next_tag < tags.size()) && (tags[next_tag].offset == nitems_read(0) + consumed))
+            {
+              /* fprintf(stderr, "skipping tag (start)\n"); */
+              next_tag++;
+            }
 	    in++;
 	    d_skip--;
 	    consumed++;
 	  }
 	}
       }
+
+      d_offset += produced;
+
       // Tell runtime system how many input items we consumed on
       // each input stream.
       consume_each (noutput_items);

@@ -34,6 +34,7 @@ namespace gr {
       int d_data_type;
       int d_skip;
       int d_copy;
+      unsigned long long d_offset;
 
      public:
       type_demux_cc_impl(int frame_type, int data_type, int length);
