@@ -42,6 +42,7 @@ list(APPEND c4fm_sources
     correlate_access_code_tag_cc_impl.cc
     dupe_skipped_cc_impl.cc
     burst_length_bb_impl.cc
+    type_demux_cc_impl.cc
 )
 
 set(c4fm_sources "${c4fm_sources}" PARENT_SCOPE)

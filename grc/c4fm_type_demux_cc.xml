@@ -1,0 +1,30 @@
+<block>
+  <name>Type Demux</name>
+  <key>c4fm_type_demux_cc</key>
+  <category>[C4FM]</category>
+  <import>import c4fm</import>
+  <make>c4fm.type_demux_cc($frame_type, $data_type, $length)</make>
+  <param>
+    <name>Frame Type</name>
+    <key>frame_type</key>
+    <type>int</type>
+  </param>
+  <param>
+    <name>Data Type</name>
+    <key>data_type</key>
+    <type>int</type>
+  </param>
+  <param>
+    <name>Length</name>
+    <key>length</key>
+    <type>int</type>
+  </param>
+  <sink>
+    <name>in</name>
+    <type>complex</type>
+  </sink>
+  <source>
+    <name>out</name>
+    <type>complex</type>
+  </source>
+</block>

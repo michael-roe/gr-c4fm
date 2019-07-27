@@ -37,5 +37,6 @@ install(FILES
     crc16_encode_bb.h
     correlate_access_code_tag_cc.h
     dupe_skipped_cc.h
-    burst_length_bb.h DESTINATION include/c4fm
+    burst_length_bb.h
+    type_demux_cc.h DESTINATION include/c4fm
 )
