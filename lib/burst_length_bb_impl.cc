@@ -73,6 +73,7 @@ namespace gr {
 	  {
 	    d_burst = 1;
 	    d_zeros = 0;
+	    d_ones = 1;
 	  }
 	}
         else
@@ -84,6 +85,7 @@ namespace gr {
 	    if (d_zeros == d_max_zeros)
 	    {
 	      fprintf(stderr, "burst length = %d\n", d_burst - d_max_zeros);
+	      fprintf(stderr, "burst weight = %d\n", d_ones);
 	      d_burst = 0;
 	      d_zeros = 0;
 	    }
@@ -91,6 +93,7 @@ namespace gr {
 	  else
           {
 	    d_zeros = 0;
+	    d_ones++;
 	  }
 	}
 	in++;

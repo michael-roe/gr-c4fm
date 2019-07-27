@@ -31,6 +31,7 @@ namespace gr {
      private:
        int d_burst;
        int d_zeros;
+       int d_ones;
        int d_max_zeros;
 
      public:
