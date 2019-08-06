@@ -331,8 +331,12 @@ namespace gr {
 	      s = 0;
 	      parity = 0;
 	      burst = 5;
-	      add_item_tag(0, d_offset+i*12, pmt::intern("burst"), pmt::PMT_T);
-	      add_item_tag(0, d_offset+i*12+12, pmt::intern("burst"), pmt::PMT_F);
+	      break;
+	    case 53:
+	      fprintf(stderr, "correcting syndrome 53\n");
+	      s = 0;
+	      parity = 0;
+	      burst = 7;
 	      break;
 	    default:
 	      break;
