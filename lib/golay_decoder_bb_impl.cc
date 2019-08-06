@@ -200,7 +200,7 @@ namespace gr {
 	      s = 0;
 	      parity = 0;
 	      burst = 3;
-	      fprintf(stderr, "correcting syndrom 659\n");
+	      fprintf(stderr, "correcting syndrome 659\n");
 	      break;
 	    case 1907:
 	      out[12*i + 1] ^= 1;
@@ -209,7 +209,7 @@ namespace gr {
               s = 0;
 	      parity = 0;
 	      burst = 3;
-	      fprintf(stderr, "correcting syndrom 1907\n");
+	      fprintf(stderr, "correcting syndrome 1907\n");
 	      break;
 	    /* Burst is length 4, weight 3 */
 	    case 1789:
@@ -317,6 +317,23 @@ namespace gr {
 	      parity = 0;
 	      burst = 4;
 	      break;
+	    case 1481:
+	      /*
+	       * This error is not usually correctable by the Golay code.
+	       * I'm relying on knowing the statistics of the preceeding
+	       * stage.
+	       */
+	      out[12*i] ^= 1;
+	      out[12*i + 2] ^= 1;
+	      out[12*i + 4] ^= 1;
+	      out[12*i + 5] ^= 1;
+	      out[12*i + 6] ^= 1;
+	      s = 0;
+	      parity = 0;
+	      burst = 5;
+	      add_item_tag(0, d_offset+i*12, pmt::intern("burst"), pmt::PMT_T);
+	      add_item_tag(0, d_offset+i*12+12, pmt::intern("burst"), pmt::PMT_F);
+	      break;
 	    default:
 	      break;
           }
@@ -417,6 +434,136 @@ namespace gr {
 	      burst = 3;
 	      break;
 
+	      /* The Golay code can't usually correct these. Here, we guess
+	       * the error based on knowledge of the convolutional code
+	       * applied before the Golay code.
+	       */
+	    case 215:
+	      fprintf(stderr, "correcting 215\n");
+	      s = 0;
+	      burst = 8;
+	      break;
+	    case 430:
+	    case 860:
+	    case 1720:
+	      s = 0;
+	      burst = 8;
+	      break;
+	    case 740:
+	      out[12*i] ^= 1;
+	      out[12*i + 1] ^= 1;
+	      out[12*i + 3] ^= 1;
+	      out[12*i + 5] ^= 1;
+	      out[12*i + 6] ^= 1;
+	      out[12*i + 7] ^= 1;
+	      s = 0;
+	      burst = 8;
+	      break;
+	    case 370:
+	      out[12*i + 1] ^= 1;
+              out[12*i + 2] ^= 1;
+              out[12*i + 4] ^= 1;
+              out[12*i + 6] ^= 1;
+              out[12*i + 7] ^= 1;
+              out[12*i + 8] ^= 1;
+	      s = 0;
+	      burst = 8;
+	      break;
+	    case 185:
+              out[12*i + 2] ^= 1;
+              out[12*i + 3] ^= 1;
+              out[12*i + 5] ^= 1;
+              out[12*i + 7] ^= 1;
+              out[12*i + 8] ^= 1;
+              out[12*i + 9] ^= 1;
+              s = 0;
+              burst = 8;
+              break;
+            case 1638:
+	      out[12*i + 3] ^= 1;
+              out[12*i + 4] ^= 1;
+              out[12*i + 6] ^= 1;
+              out[12*i + 8] ^= 1;
+              out[12*i + 9] ^= 1;
+              out[12*i + 10] ^= 1;
+              s = 0;
+              burst = 8;
+              break;
+            case 819:
+	      out[12*i + 4] ^= 1;
+              out[12*i + 5] ^= 1;
+              out[12*i + 7] ^= 1;
+              out[12*i + 9] ^= 1;
+              out[12*i + 10] ^= 1;
+              out[12*i + 11] ^= 1;
+              s = 0;
+              burst = 8;
+              break;
+	    case 1955:
+	      out[12*i + 5] ^= 1;
+              out[12*i + 6] ^= 1;
+              out[12*i + 8] ^= 1;
+              out[12*i + 10] ^= 1;
+              out[12*i + 11] ^= 1;
+	      s = 0;
+	      burst = 8;
+	      break;
+	    case 1515:
+	      out[12*i + 6] ^= 1;
+              out[12*i + 7] ^= 1;
+              out[12*i + 9] ^= 1;
+              out[12*i + 11] ^= 1;
+              s = 0;
+	      burst = 8;
+	      break;
+	    case 1231:
+	      out[12*i + 7] ^= 1;
+              out[12*i + 8] ^= 1;
+              out[12*i + 10] ^= 1;
+              s = 0;
+	      burst = 8;
+	      break;
+	    case 1117:
+	      out[12*i + 8] ^= 1;
+              out[12*i + 9] ^= 1;
+              out[12*i + 11] ^= 1;
+              s = 0;
+	      burst = 8;
+	      break;
+	    case 1044:
+	      out[12*i + 9] ^= 1;
+              out[12*i + 10] ^= 1;
+              s = 0;
+	      burst = 8;
+	      break;
+	    case 522:
+	      out[12*i + 10] ^= 1;
+              out[12*i + 11] ^= 1;
+              s = 0;
+	      burst = 8;
+	      break;
+	    case 261:
+	      out[12*i + 11] ^= 1;
+              s = 0;
+              burst = 8;
+              break;
+	      /* Truncated versions of the above bit pattern */
+	    case 953:
+	      out[12*i] ^= 1;
+	      out[12*i + 2] ^= 1;
+	      out[12*i + 3] ^= 1;
+	      out[12*i + 4] ^= 1;
+	      s = 0;
+	      burst = 5;
+	      break;
+	    case 2022:
+	      out[12*i + 1] ^= 1;
+              out[12*i + 3] ^= 1;
+              out[12*i + 4] ^= 1;
+              out[12*i + 5] ^= 1;
+              s = 0;
+              burst = 5;
+	      break;
 	    default:
 	      break;
           }
@@ -424,7 +571,7 @@ namespace gr {
 
 	if (burst != 0)
         {
-	  add_item_tag(0, d_offset+i*12, pmt::intern("burst"), pmt::from_long(burst));
+	  add_item_tag(0, d_offset+i*12, pmt::intern("burst_length"), pmt::from_long(burst));
 	}
 
 	if ((s != 0) || (parity != 0))
