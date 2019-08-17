@@ -22,6 +22,8 @@
 #include "config.h"
 #endif
 
+#include <cstring>
+#include <string>
 #include <gnuradio/io_signature.h>
 #include "discard_parity_errors_bb_impl.h"
 
@@ -29,16 +31,16 @@ namespace gr {
   namespace c4fm {
 
     discard_parity_errors_bb::sptr
-    discard_parity_errors_bb::make(int blocksize)
+    discard_parity_errors_bb::make(int blocksize, const std::string &key)
     {
       return gnuradio::get_initial_sptr
-        (new discard_parity_errors_bb_impl(blocksize));
+        (new discard_parity_errors_bb_impl(blocksize, key));
     }
 
     /*
      * The private constructor
      */
-    discard_parity_errors_bb_impl::discard_parity_errors_bb_impl(int blocksize)
+    discard_parity_errors_bb_impl::discard_parity_errors_bb_impl(int blocksize, const std::string &key)
       : gr::block("discard_parity_errors_bb",
               gr::io_signature::make(1, 2, sizeof(char)),
               gr::io_signature::make(1, 2, sizeof(char)))
@@ -46,7 +48,7 @@ namespace gr {
       d_blocksize = blocksize;
       set_output_multiple(d_blocksize);
       set_tag_propagation_policy(TPP_DONT);
-      d_tag_key = pmt::intern("parity_error");
+      d_tag_key = pmt::intern(key.c_str());
     }
 
     /*

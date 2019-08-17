@@ -33,7 +33,7 @@ namespace gr {
        int d_blocksize;
 
      public:
-      discard_parity_errors_bb_impl(int blocksize);
+      discard_parity_errors_bb_impl(int blocksize, const std::string &key);
       ~discard_parity_errors_bb_impl();
 
       // Where all the action really happens

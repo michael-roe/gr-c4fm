@@ -1,13 +1,18 @@
 <block>
-  <name>Discard Parity Errors</name>
+  <name>Discard parity errors bb</name>
   <key>c4fm_discard_parity_errors_bb</key>
   <category>[C4FM]</category>
   <import>import c4fm</import>
-  <make>c4fm.discard_parity_errors_bb($blocksize)</make>
+  <make>c4fm.discard_parity_errors_bb($blocksize, $key)</make>
   <param>
     <name>Blocksize</name>
     <key>blocksize</key>
     <type>int</type>
+  </param>
+  <param>
+    <name>Key</name>
+    <key>key</key>
+    <type>string</type>
   </param>
   <sink>
     <name>in</name>

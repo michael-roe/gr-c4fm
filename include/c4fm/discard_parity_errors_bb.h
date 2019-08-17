@@ -51,7 +51,7 @@ namespace gr {
        * class. c4fm::discard_parity_errors_bb::make is the public interface for
        * creating new instances.
        */
-      static sptr make(int blocksize);
+      static sptr make(int blocksize, const std::string &key);
     };
 
   } // namespace c4fm
