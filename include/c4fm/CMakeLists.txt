@@ -38,5 +38,6 @@ install(FILES
     correlate_access_code_tag_cc.h
     dupe_skipped_cc.h
     burst_length_bb.h
-    type_demux_cc.h DESTINATION include/c4fm
+    type_demux_cc.h
+    tags_to_stream_cf.h DESTINATION include/c4fm
 )

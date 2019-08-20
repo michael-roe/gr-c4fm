@@ -58,3 +58,4 @@ GR_ADD_TEST(qa_correlate_access_code_tag_cc ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT
 GR_ADD_TEST(qa_dupe_skipped_cc ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_dupe_skipped_cc.py)
 GR_ADD_TEST(qa_burst_length_bb ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_burst_length_bb.py)
 GR_ADD_TEST(qa_type_demux_cc ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_type_demux_cc.py)
+GR_ADD_TEST(qa_tags_to_stream_cf ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_tags_to_stream_cf.py)

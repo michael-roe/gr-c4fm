@@ -43,6 +43,7 @@ list(APPEND c4fm_sources
     dupe_skipped_cc_impl.cc
     burst_length_bb_impl.cc
     type_demux_cc_impl.cc
+    tags_to_stream_cf_impl.cc
 )
 
 set(c4fm_sources "${c4fm_sources}" PARENT_SCOPE)

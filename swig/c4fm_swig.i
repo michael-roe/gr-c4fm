@@ -25,6 +25,7 @@
 #include "c4fm/dupe_skipped_cc.h"
 #include "c4fm/burst_length_bb.h"
 #include "c4fm/type_demux_cc.h"
+#include "c4fm/tags_to_stream_cf.h"
 %}
 
 
@@ -62,3 +63,5 @@ GR_SWIG_BLOCK_MAGIC2(c4fm, dupe_skipped_cc);
 GR_SWIG_BLOCK_MAGIC2(c4fm, burst_length_bb);
 %include "c4fm/type_demux_cc.h"
 GR_SWIG_BLOCK_MAGIC2(c4fm, type_demux_cc);
+%include "c4fm/tags_to_stream_cf.h"
+GR_SWIG_BLOCK_MAGIC2(c4fm, tags_to_stream_cf);
