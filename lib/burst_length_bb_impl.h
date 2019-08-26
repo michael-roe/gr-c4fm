@@ -33,6 +33,10 @@ namespace gr {
        int d_zeros;
        int d_ones;
        int d_max_zeros;
+       int d_error_count;
+       int d_burst_count;
+       int d_squared_burst_weights;
+       unsigned long long d_offset;
 
      public:
       burst_length_bb_impl(int max_zeros);

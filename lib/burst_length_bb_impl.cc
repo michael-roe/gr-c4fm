@@ -43,9 +43,13 @@ namespace gr {
               gr::io_signature::make(1, 1, sizeof(unsigned char)),
               gr::io_signature::make(1, 1, sizeof(unsigned char)))
     {
+      d_offset = 0;
       d_max_zeros = max_zeros;
       d_burst = 0;
       d_zeros = 0;
+      d_error_count = 0;
+      d_burst_count = 0;
+      d_squared_burst_weights = 0;
     }
 
     /*
@@ -74,6 +78,8 @@ namespace gr {
 	    d_burst = 1;
 	    d_zeros = 0;
 	    d_ones = 1;
+	    d_burst_count++;
+            d_error_count++;
 	  }
 	}
         else
@@ -84,8 +90,21 @@ namespace gr {
 	    d_zeros++;
 	    if (d_zeros == d_max_zeros)
 	    {
-	      fprintf(stderr, "burst length = %d\n", d_burst - d_max_zeros);
-	      fprintf(stderr, "burst weight = %d\n", d_ones);
+	      /* fprintf(stderr, "burst length = %d\n", d_burst - d_max_zeros); */
+	      /* fprintf(stderr, "burst weight = %d\n", d_ones); */
+	      add_item_tag(0, d_offset + i, pmt::intern("burst_weight"),
+	        pmt::from_long(d_ones));
+	      d_squared_burst_weights += d_ones*d_ones;
+	      add_item_tag(0, d_offset + i, pmt::intern("mean_burst_weight"),
+	        pmt::from_float(((double) d_error_count)/((double) d_burst_count)));
+	      /* fprintf(stderr, "mean burst weight = %lf\n",
+                ((double) d_error_count)/((double) d_burst_count)); */
+	      /* fprintf(stderr, "mean squared burst weight = %lf\n",
+	        ((double) d_squared_burst_weights)/((double) d_burst_count)); */
+	      add_item_tag(0, d_offset + i, pmt::intern("mean_squared_burst_weight"),
+	        pmt::from_float(((double) d_squared_burst_weights)/((double) d_burst_count)));
+	      /* fprintf(stderr, "population standard deviation of weights = %lf\n",
+                sqrt(((double) d_burst_count*d_squared_burst_weights - d_error_count*d_error_count))/((double) d_burst_count)); */
 	      d_burst = 0;
 	      d_zeros = 0;
 	    }
@@ -94,11 +113,14 @@ namespace gr {
           {
 	    d_zeros = 0;
 	    d_ones++;
+	    d_error_count++;
 	  }
 	}
 	in++;
 	out++;
       }
+
+      d_offset += noutput_items;
 
       // Tell runtime system how many output items we produced.
       return noutput_items;
