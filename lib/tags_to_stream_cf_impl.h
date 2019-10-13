@@ -30,9 +30,10 @@ namespace gr {
     {
      private:
       int d_samples;
+      pmt::pmt_t d_tag_key;
 
      public:
-      tags_to_stream_cf_impl(int samples);
+      tags_to_stream_cf_impl(const std::string &key, int samples);
       ~tags_to_stream_cf_impl();
 
       // Where all the action really happens

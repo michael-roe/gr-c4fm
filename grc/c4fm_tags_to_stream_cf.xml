@@ -3,7 +3,12 @@
   <key>c4fm_tags_to_stream_cf</key>
   <category>[C4FM]</category>
   <import>import c4fm</import>
-  <make>c4fm.tags_to_stream_cf($samples)</make>
+  <make>c4fm.tags_to_stream_cf($key, $samples)</make>
+  <param>
+    <name>Key</name>
+    <key>key</key>
+    <type>string</type>
+  </param>
   <param>
     <name>Samples</name>
     <key>samples</key>

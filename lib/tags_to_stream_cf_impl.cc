@@ -29,21 +29,22 @@ namespace gr {
   namespace c4fm {
 
     tags_to_stream_cf::sptr
-    tags_to_stream_cf::make(int samples)
+    tags_to_stream_cf::make(const std::string &key, int samples)
     {
       return gnuradio::get_initial_sptr
-        (new tags_to_stream_cf_impl(samples));
+        (new tags_to_stream_cf_impl(key, samples));
     }
 
     /*
      * The private constructor
      */
-    tags_to_stream_cf_impl::tags_to_stream_cf_impl(int samples)
+    tags_to_stream_cf_impl::tags_to_stream_cf_impl(const std::string &key, int samples)
       : gr::block("tags_to_stream_cf",
               gr::io_signature::make(1, 1, sizeof(gr_complex)),
               gr::io_signature::make(1, 1, sizeof(float)))
     {
       d_samples = samples;
+      d_tag_key = pmt::intern(key.c_str());
     }
 
 
@@ -78,7 +79,7 @@ namespace gr {
 
       for (i=0; i<tags.size(); i++)
       {
-        if (pmt::equal(tags[i].key, pmt::intern("snr")))
+        if (pmt::equal(tags[i].key, d_tag_key))
 	{
           out[produced] = pmt::to_float(tags[i].value);
 	  produced++;

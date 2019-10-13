@@ -46,7 +46,7 @@ namespace gr {
        * class. c4fm::tags_to_stream_cf::make is the public interface for
        * creating new instances.
        */
-      static sptr make(int samples);
+      static sptr make(const std::string &key, int samples);
     };
 
   } // namespace c4fm
