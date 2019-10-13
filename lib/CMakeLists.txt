@@ -44,6 +44,10 @@ list(APPEND c4fm_sources
     burst_length_bb_impl.cc
     type_demux_cc_impl.cc
     tags_to_stream_cf_impl.cc
+    ratio_combiner_ff_impl.cc
+    tag_to_message_f_impl.cc
+    tag_to_message_c_impl.cc
+    maximal_ratio_impl.cc
 )
 
 set(c4fm_sources "${c4fm_sources}" PARENT_SCOPE)

@@ -35,5 +35,9 @@ install(FILES
     c4fm_dupe_skipped_cc.xml
     c4fm_burst_length_bb.xml
     c4fm_type_demux_cc.xml
-    c4fm_tags_to_stream_cf.xml DESTINATION share/gnuradio/grc/blocks
+    c4fm_tags_to_stream_cf.xml
+    c4fm_ratio_combiner_ff.xml
+    c4fm_tag_to_message_f.xml
+    c4fm_tag_to_message_c.xml
+    c4fm_maximal_ratio.xml DESTINATION share/gnuradio/grc/blocks
 )

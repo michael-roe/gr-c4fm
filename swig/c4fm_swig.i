@@ -26,6 +26,10 @@
 #include "c4fm/burst_length_bb.h"
 #include "c4fm/type_demux_cc.h"
 #include "c4fm/tags_to_stream_cf.h"
+#include "c4fm/ratio_combiner_ff.h"
+#include "c4fm/tag_to_message_f.h"
+#include "c4fm/tag_to_message_c.h"
+#include "c4fm/maximal_ratio.h"
 %}
 
 
@@ -65,3 +69,11 @@ GR_SWIG_BLOCK_MAGIC2(c4fm, burst_length_bb);
 GR_SWIG_BLOCK_MAGIC2(c4fm, type_demux_cc);
 %include "c4fm/tags_to_stream_cf.h"
 GR_SWIG_BLOCK_MAGIC2(c4fm, tags_to_stream_cf);
+%include "c4fm/ratio_combiner_ff.h"
+GR_SWIG_BLOCK_MAGIC2(c4fm, ratio_combiner_ff);
+%include "c4fm/tag_to_message_f.h"
+GR_SWIG_BLOCK_MAGIC2(c4fm, tag_to_message_f);
+%include "c4fm/tag_to_message_c.h"
+GR_SWIG_BLOCK_MAGIC2(c4fm, tag_to_message_c);
+%include "c4fm/maximal_ratio.h"
+GR_SWIG_BLOCK_MAGIC2(c4fm, maximal_ratio);

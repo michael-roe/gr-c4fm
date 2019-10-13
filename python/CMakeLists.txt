@@ -59,3 +59,7 @@ GR_ADD_TEST(qa_dupe_skipped_cc ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/
 GR_ADD_TEST(qa_burst_length_bb ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_burst_length_bb.py)
 GR_ADD_TEST(qa_type_demux_cc ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_type_demux_cc.py)
 GR_ADD_TEST(qa_tags_to_stream_cf ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_tags_to_stream_cf.py)
+GR_ADD_TEST(qa_ratio_combiner_ff ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_ratio_combiner_ff.py)
+GR_ADD_TEST(qa_tag_to_message_f ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_tag_to_message_f.py)
+GR_ADD_TEST(qa_tag_to_message_c ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_tag_to_message_c.py)
+GR_ADD_TEST(qa_maximal_ratio ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_maximal_ratio.py)

@@ -1,0 +1,11 @@
+<block>
+  <name>Tag to Message</name>
+  <key>c4fm_tag_to_message_f</key>
+  <category>[C4FM]</category>
+  <import>import c4fm</import>
+  <make>c4fm.tag_to_message_f()</make>
+  <sink>
+    <name>in</name>
+    <type>float</type>
+  </sink>
+</block>

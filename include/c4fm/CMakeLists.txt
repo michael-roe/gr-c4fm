@@ -39,5 +39,9 @@ install(FILES
     dupe_skipped_cc.h
     burst_length_bb.h
     type_demux_cc.h
-    tags_to_stream_cf.h DESTINATION include/c4fm
+    tags_to_stream_cf.h
+    ratio_combiner_ff.h
+    tag_to_message_f.h
+    tag_to_message_c.h
+    maximal_ratio.h DESTINATION include/c4fm
 )
