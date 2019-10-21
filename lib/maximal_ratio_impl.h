@@ -36,6 +36,8 @@ namespace gr {
       double d_snr0;
       double d_snr1;
       double d_angle;
+      int d_count0;
+      int d_count1;
 
       void set_snr0(pmt::pmt_t msg);
       void set_snr1(pmt::pmt_t msg);

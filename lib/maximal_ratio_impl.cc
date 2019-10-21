@@ -41,6 +41,15 @@ namespace gr {
 
       if (pmt::is_pair(msg) && pmt::is_real(pmt::cdr(msg)))
       {
+        d_count1 = 0;
+        if (d_count0 > 2)
+        {
+	  d_snr1 = 0.0;
+        }
+	else
+	{
+	  d_count0++;
+	}
         d_snr0 =  pmt::to_double(pmt::cdr(msg));
         if (d_snr1 != 0.0)
         {
@@ -61,6 +70,15 @@ namespace gr {
 
       if (pmt::is_pair(msg) && pmt::is_real(pmt::cdr(msg)))
       {
+	d_count0 = 0;
+	if (d_count1 > 2)
+	{
+	  d_snr0 = 0.0;
+	}
+	else
+        {
+          d_count1++;
+        }
         d_snr1 =  pmt::to_double(pmt::cdr(msg));
 	if (d_snr0 != 0.0)
         {
@@ -98,7 +116,8 @@ namespace gr {
       d_snr0 = 0.0;
       d_snr1 = 0.0;
       d_angle = 45.0;
-
+      d_count0 = 0;
+      d_count1 = 0;
     }
 
     /*
