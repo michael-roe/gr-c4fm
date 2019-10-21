@@ -100,8 +100,15 @@ namespace gr {
           }
 	  d_skip = 0;
 	}
-	else if ((d_skip >= d_length) && (d_skip < d_length + 2) & (correlation > d_threshold2))
+	else if (((d_skip == d_length) || (d_skip == d_length + 1) ||
+	  (d_skip == 2*d_length - 1) || (d_skip == 2*d_length) ||
+	  (d_skip == 2*d_length + 1) ||
+	  (d_skip == 3*d_length)) && (correlation > d_threshold2))
         {
+          if (d_skip >= 2*d_length)
+	  {
+            fprintf(stderr, "low correlation after missing a frame\n");
+	  }
 	  add_item_tag(0, d_offset + i, pmt::intern("correlation"),
             pmt::from_double(correlation));
 	  add_item_tag(0, d_offset + i, pmt::intern("low_correlation"),
