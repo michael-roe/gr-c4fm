@@ -101,8 +101,8 @@ namespace gr {
                 ((double) d_error_count)/((double) d_burst_count)); */
 	      /* fprintf(stderr, "mean squared burst weight = %lf\n",
 	        ((double) d_squared_burst_weights)/((double) d_burst_count)); */
-	      add_item_tag(0, d_offset + i, pmt::intern("mean_squared_burst_weight"),
-	        pmt::from_float(((double) d_squared_burst_weights)/((double) d_burst_count)));
+	      add_item_tag(0, d_offset + i, pmt::intern("rms_burst_weight"),
+	        pmt::from_float(sqrt(((double) d_squared_burst_weights)/((double) d_burst_count))));
 	      /* fprintf(stderr, "population standard deviation of weights = %lf\n",
                 sqrt(((double) d_burst_count*d_squared_burst_weights - d_error_count*d_error_count))/((double) d_burst_count)); */
 	      d_burst = 0;
