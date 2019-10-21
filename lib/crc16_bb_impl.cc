@@ -101,9 +101,9 @@ namespace gr {
             crc ^= 1 | (1 << 5) | (1 << 12);
 	}
         if (crc != 0)
+	{
           add_item_tag(0, d_offset+i*d_length, d_crc_error_key, pmt::PMT_T);
-	else
-          add_item_tag(0, d_offset+i*d_length, d_crc_error_key, pmt::PMT_F);
+	}
       }
 
 
@@ -115,9 +115,11 @@ namespace gr {
 	if (block_offset >= d_length)
         {
           fprintf(stderr, "CRC16: tag is on CRC\n");
-          block_offset = d_length - 1;
 	}
-	add_item_tag(0, d_length*block_num+block_offset, tags[i].key, tags[i].value);
+	else
+	{
+	  add_item_tag(0, d_length*block_num+block_offset, tags[i].key, tags[i].value);
+	}
       }
 
       // Tell runtime system how many input items we consumed on
