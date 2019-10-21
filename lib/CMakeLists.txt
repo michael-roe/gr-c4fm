@@ -48,6 +48,7 @@ list(APPEND c4fm_sources
     tag_to_message_f_impl.cc
     tag_to_message_c_impl.cc
     maximal_ratio_impl.cc
+    splitter_cc_impl.cc
 )
 
 set(c4fm_sources "${c4fm_sources}" PARENT_SCOPE)

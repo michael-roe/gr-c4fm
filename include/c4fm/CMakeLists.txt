@@ -43,5 +43,6 @@ install(FILES
     ratio_combiner_ff.h
     tag_to_message_f.h
     tag_to_message_c.h
-    maximal_ratio.h DESTINATION include/c4fm
+    maximal_ratio.h
+    splitter_cc.h DESTINATION include/c4fm
 )

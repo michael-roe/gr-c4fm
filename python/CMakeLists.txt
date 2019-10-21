@@ -63,3 +63,4 @@ GR_ADD_TEST(qa_ratio_combiner_ff ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR
 GR_ADD_TEST(qa_tag_to_message_f ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_tag_to_message_f.py)
 GR_ADD_TEST(qa_tag_to_message_c ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_tag_to_message_c.py)
 GR_ADD_TEST(qa_maximal_ratio ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_maximal_ratio.py)
+GR_ADD_TEST(qa_splitter_cc ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_splitter_cc.py)
