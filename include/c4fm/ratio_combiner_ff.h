@@ -1,6 +1,6 @@
 /* -*- c++ -*- */
 /* 
- * Copyright 2019 <+YOU OR YOUR COMPANY+>.
+ * Copyright 2019 Michael Roe.
  * 
  * This is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -29,7 +29,12 @@ namespace gr {
   namespace c4fm {
 
     /*!
-     * \brief <+description of block+>
+     * \brief The output stream is a weighted sum of the two input streams:
+     * out[i] = in0[i]*sin(angle)**2 + in1[i]*cos(angle)**2.
+     * Angle is measured in degrees (not radians). Its value can be updated
+     * dynamically by sending the block an asynchronous message containing an
+     * ordered pair of the keyword "angle" and a double-precision floating
+     * point number.
      * \ingroup c4fm
      *
      */
