@@ -38,6 +38,7 @@ namespace gr {
     void ratio_combiner_ff_impl::set_angle(pmt::pmt_t msg)
     {
       double angle;
+      gr::thread::scoped_lock guard(d_mutex);
 
       if (pmt::is_pair(msg) && pmt::is_real(pmt::cdr(msg)))
       {
@@ -83,6 +84,7 @@ namespace gr {
       const float *in1 = (const float *) input_items[1];
       float *out = (float *) output_items[0];
       int i;
+      gr::thread::scoped_lock guard(d_mutex);
 
       for (i=0; i<noutput_items; i++)
       {

@@ -30,6 +30,7 @@ namespace gr {
     {
      private:
        pmt::pmt_t d_port;
+       gr::thread::mutex d_mutex;
        float d_w0;
        float d_w1;
 
