@@ -56,12 +56,15 @@ namespace gr {
               gr::io_signature::make(2, 2, sizeof(float)),
               gr::io_signature::make(1, 1, sizeof(float)))
     {
+      double radians;
+
       d_port = pmt::mp("angle");
       message_port_register_in(d_port);
       set_msg_handler(d_port,
         boost::bind(&ratio_combiner_ff_impl::set_angle, this, _1));
-      d_w0 = (float) sin(angle)*sin(angle);
-      d_w1 = (float) cos(angle)*cos(angle);
+      radians = angle*M_PI/180.0;
+      d_w0 = (float) sin(radians)*sin(radians);
+      d_w1 = (float) cos(radians)*cos(radians);
     }
 
     /*
