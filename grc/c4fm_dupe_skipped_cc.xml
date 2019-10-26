@@ -1,5 +1,5 @@
 <block>
-  <name>Duplicated Skipped</name>
+  <name>Duplicate Skipped</name>
   <key>c4fm_dupe_skipped_cc</key>
   <category>[C4FM]</category>
   <import>import c4fm</import>
