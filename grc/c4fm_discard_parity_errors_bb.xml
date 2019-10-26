@@ -1,5 +1,5 @@
 <block>
-  <name>Discard parity errors bb</name>
+  <name>Discard Parity Errors</name>
   <key>c4fm_discard_parity_errors_bb</key>
   <category>[C4FM]</category>
   <import>import c4fm</import>
