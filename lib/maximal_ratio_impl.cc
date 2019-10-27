@@ -29,10 +29,10 @@ namespace gr {
   namespace c4fm {
 
     maximal_ratio::sptr
-    maximal_ratio::make()
+    maximal_ratio::make(double gain)
     {
       return gnuradio::get_initial_sptr
-        (new maximal_ratio_impl());
+        (new maximal_ratio_impl(gain));
     }
 
     void maximal_ratio_impl::set_snr0(pmt::pmt_t msg)
@@ -53,7 +53,7 @@ namespace gr {
         d_snr0 =  pmt::to_double(pmt::cdr(msg));
         if (d_snr1 != 0.0)
         {
-          delta = (d_snr0 - d_snr1)*0.1*0.5/0.767;
+          delta = (d_snr0 - d_snr1)*0.1*0.5*d_gain;
           d_angle = atan(exp10(delta))*180.0/M_PI;
         }
         else
@@ -82,7 +82,7 @@ namespace gr {
         d_snr1 =  pmt::to_double(pmt::cdr(msg));
 	if (d_snr0 != 0.0)
         {
-          delta = (d_snr0 - d_snr1)*0.1*0.5/0.767;
+          delta = (d_snr0 - d_snr1)*0.1*0.5*d_gain;
 	  d_angle = atan(exp10(delta))*180.0/M_PI;
         }
 	else
@@ -97,7 +97,7 @@ namespace gr {
     /*
      * The private constructor
      */
-    maximal_ratio_impl::maximal_ratio_impl()
+    maximal_ratio_impl::maximal_ratio_impl(double gain)
       : gr::sync_block("maximal_ratio",
               gr::io_signature::make(0, 0, 0),
               gr::io_signature::make(0, 0, 0))
@@ -113,6 +113,7 @@ namespace gr {
       set_msg_handler(d_port_in1,
         boost::bind(&maximal_ratio_impl::set_snr1, this, _1));
       d_tag_key = pmt::intern("angle");
+      d_gain = gain; /* Use 1.0/0.767 for 4FSK */
       d_snr0 = 0.0;
       d_snr1 = 0.0;
       d_angle = 45.0;

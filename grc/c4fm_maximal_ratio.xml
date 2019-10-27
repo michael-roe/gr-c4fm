@@ -3,7 +3,12 @@
   <key>c4fm_maximal_ratio</key>
   <category>[C4FM]</category>
   <import>import c4fm</import>
-  <make>c4fm.maximal_ratio()</make>
+  <make>c4fm.maximal_ratio($gain)</make>
+  <param>
+    <name>Gain</name>
+    <key>gain</key>
+    <type>real</type>
+  </param>
   <sink>
     <name>in0</name>
     <type>message</type>
@@ -16,5 +21,5 @@
     <name>out</name>
     <type>message</type>
   </source>
-</block>
 
+</block>

@@ -46,7 +46,7 @@ namespace gr {
        * class. c4fm::maximal_ratio::make is the public interface for
        * creating new instances.
        */
-      static sptr make();
+      static sptr make(double gain);
     };
 
   } // namespace c4fm

@@ -33,6 +33,7 @@ namespace gr {
       pmt::pmt_t d_port_in1;
       pmt::pmt_t d_port_out;
       pmt::pmt_t d_tag_key;
+      double d_gain;
       double d_snr0;
       double d_snr1;
       double d_angle;
@@ -43,7 +44,7 @@ namespace gr {
       void set_snr1(pmt::pmt_t msg);
 
      public:
-      maximal_ratio_impl();
+      maximal_ratio_impl(double gain);
       ~maximal_ratio_impl();
 
       // Where all the action really happens
