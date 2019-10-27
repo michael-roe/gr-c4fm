@@ -35,7 +35,7 @@ namespace gr {
      * more frames have been lost (i.e. it is not the previous frame_number plus
      * one modulo frame_total), then additional frames of all zeros are inserted
      * to fill the gap. The inserted frames are divided into fixed length subframes,
-     * and a "deleted_frame" tag with value #T is added at the start of each
+     * and a "deleted_frame" tag with value True is added at the start of each
      * subframe.
      * \ingroup c4fm
      *
