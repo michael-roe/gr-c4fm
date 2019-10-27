@@ -29,21 +29,21 @@ namespace gr {
   namespace c4fm {
 
     tag_to_message_c::sptr
-    tag_to_message_c::make()
+    tag_to_message_c::make(const std::string &key)
     {
       return gnuradio::get_initial_sptr
-        (new tag_to_message_c_impl());
+        (new tag_to_message_c_impl(key));
     }
 
     /*
      * The private constructor
      */
-    tag_to_message_c_impl::tag_to_message_c_impl()
+    tag_to_message_c_impl::tag_to_message_c_impl(const std::string &key)
       : gr::sync_block("tag_to_message_c",
               gr::io_signature::make(1, 1, sizeof(gr_complex)),
               gr::io_signature::make(0, 0, 0))
     {
-      d_tag_key = pmt::intern("snr");
+      d_tag_key = pmt::intern(key.c_str());
       d_port = pmt::mp("out");
       message_port_register_out(d_port);
     }
