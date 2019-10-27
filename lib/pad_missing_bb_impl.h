@@ -35,9 +35,10 @@ namespace gr {
       int d_pad;
       int d_copy;
       int d_frame;
+      int d_missed;
 
      public:
-      pad_missing_bb_impl(int length);
+      pad_missing_bb_impl(int length, int subframes);
       ~pad_missing_bb_impl();
 
       // Where all the action really happens

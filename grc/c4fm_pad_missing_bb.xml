@@ -1,12 +1,17 @@
 <block>
-  <name>Pad missing frames</name>
+  <name>Pad Missing Frames</name>
   <key>c4fm_pad_missing_bb</key>
   <category>[C4FM]</category>
   <import>import c4fm</import>
-  <make>c4fm.pad_missing_bb($length)</make>
+  <make>c4fm.pad_missing_bb($length,$subframes)</make>
   <param>
     <name>Length</name>
     <key>length</key>
+    <type>int</type>
+  </param>
+  <param>
+    <name>Subframes</name>
+    <key>subframes</key>
     <type>int</type>
   </param>
   <sink>

@@ -29,7 +29,14 @@ namespace gr {
   namespace c4fm {
 
     /*!
-     * \brief <+description of block+>
+     * \brief This block expects its input to stream to contain fixed length frames,
+     * with the start of each frame having a "frame_number" tag containing a sequence
+     * number modulo frame_total. If the frame_number tag indicates that one or
+     * more frames have been lost (i.e. it is not the previous frame_number plus
+     * one modulo frame_total), then additional frames of all zeros are inserted
+     * to fill the gap. The inserted frames are divided into fixed length subframes,
+     * and a "deleted_frame" tag with value #T is added at the start of each
+     * subframe.
      * \ingroup c4fm
      *
      */
@@ -46,7 +53,7 @@ namespace gr {
        * class. c4fm::pad_missing_bb::make is the public interface for
        * creating new instances.
        */
-      static sptr make(int length);
+      static sptr make(int length, int subframes);
     };
 
   } // namespace c4fm

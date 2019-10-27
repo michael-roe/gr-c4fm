@@ -29,16 +29,16 @@ namespace gr {
   namespace c4fm {
 
     pad_missing_bb::sptr
-    pad_missing_bb::make(int length)
+    pad_missing_bb::make(int length, int subframes)
     {
       return gnuradio::get_initial_sptr
-        (new pad_missing_bb_impl(length));
+        (new pad_missing_bb_impl(length, subframes));
     }
 
     /*
      * The private constructor
      */
-    pad_missing_bb_impl::pad_missing_bb_impl(int length)
+    pad_missing_bb_impl::pad_missing_bb_impl(int length, int subframes)
       : gr::block("pad_missing_bb",
               gr::io_signature::make(1, 1, sizeof(unsigned char)),
               gr::io_signature::make(1, 1, sizeof(unsigned char)))
@@ -47,10 +47,11 @@ namespace gr {
       set_tag_propagation_policy(TPP_DONT);
       d_offset = 0;
       d_length = length;
-      d_subframes = 5;
+      d_subframes = subframes;
       d_pad = 0;
       d_copy = 0;
       d_frame = -1;
+      d_missed = 0;
     }
 
     /*
@@ -128,7 +129,7 @@ namespace gr {
 	  }
 	  if (tag_index2 >= tags.size())
 	  {
-	    fprintf(stderr, "pad_missing: tag not found\n");
+	    fprintf(stderr, "pad_missing_bb: tag not found\n");
 	  }
 	  else
 	  {
@@ -136,7 +137,8 @@ namespace gr {
 	    frame_number = pmt::to_long(tags[tag_index2].value);
 	    if ((d_frame >= 0) && (frame_number != ((d_frame + 1) & 0x7)))
 	    {
-	      fprintf(stderr, "Missing frame!\n");
+	      d_missed++;
+	      /* fprintf(stderr, "Missing frame! (%d missed)\n", d_missed); */
 	      d_pad = d_length;
 	      d_frame = (d_frame + 1) & 0x7;
 	    }
