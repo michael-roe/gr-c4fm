@@ -33,7 +33,7 @@ namespace gr {
       pmt::pmt_t d_tag_key;
 
      public:
-      tag_to_message_f_impl();
+      tag_to_message_f_impl(const std::string &key);
       ~tag_to_message_f_impl();
 
       // Where all the action really happens

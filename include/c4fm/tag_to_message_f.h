@@ -46,7 +46,7 @@ namespace gr {
        * class. c4fm::tag_to_message_f::make is the public interface for
        * creating new instances.
        */
-      static sptr make();
+      static sptr make(const std::string &key);
     };
 
   } // namespace c4fm
