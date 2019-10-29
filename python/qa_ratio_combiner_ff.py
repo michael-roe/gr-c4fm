@@ -32,8 +32,19 @@ class qa_ratio_combiner_ff (gr_unittest.TestCase):
         self.tb = None
 
     def test_001_t (self):
-        # set up fg
+        src_data0 = (1, 1, -1, -1)
+        src_data1 = (1, -1, 1, -1)
+        expected_result = (1, 0, 0, -1)
+        src0 = blocks.vector_source_f(src_data0)
+        src1 = blocks.vector_source_f(src_data1)
+        combiner = c4fm.ratio_combiner_ff(45)
+        dst = blocks.vector_sink_f()
+        self.tb.connect(src0, (combiner, 0))
+        self.tb.connect(src1, (combiner, 1))
+        self.tb.connect(combiner, dst)
         self.tb.run ()
+        result_data = dst.data()
+        self.assertFloatTuplesAlmostEqual(expected_result, result_data, 4)
         # check data
 
 
