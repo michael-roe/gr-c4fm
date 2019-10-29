@@ -32,8 +32,16 @@ class qa_quaternary_slicer_cb (gr_unittest.TestCase):
         self.tb = None
 
     def test_001_t (self):
-        # set up fg
-        self.tb.run ()
+        src_data = (1+1j, 1-1j, -1+1j, -1-1j, 2+2j)
+        expected_result = (3, 2, 1, 0, 3)
+        src = blocks.vector_source_c(src_data)
+        slicer = c4fm.quaternary_slicer_cb()
+        dst = blocks.vector_sink_b()
+        self.tb.connect(src, slicer)
+        self.tb.connect(slicer, dst)
+        self.tb.run()
+        result_data = dst.data()
+        self.assertEqual(result_data, expected_result)
         # check data
 
 
