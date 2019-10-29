@@ -32,9 +32,16 @@ class qa_whiten_ff (gr_unittest.TestCase):
         self.tb = None
 
     def test_001_t (self):
-        # set up fg
+        src_data = (1, 1, 1, 1, -1, -1, -1, -1, 2, 2, 2, 2, 1, 1, 1, 1)
+        expected_result = (-1, 1, 1, -1, -1, -1, 1, 1, -2, -2, 2, -2, -1, 1, 1, -1)
+        src = blocks.vector_source_f(src_data)
+        whiten = c4fm.whiten_ff(12)
+        dst = blocks.vector_sink_f()
+        self.tb.connect(src, whiten)
+        self.tb.connect(whiten, dst)
         self.tb.run ()
-        # check data
+        result_data = dst.data()
+        self.assertFloatTuplesAlmostEqual(expected_result, result_data, 12)
 
 
 if __name__ == '__main__':
