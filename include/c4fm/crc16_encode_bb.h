@@ -29,7 +29,11 @@ namespace gr {
   namespace c4fm {
 
     /*!
-     * \brief <+description of block+>
+     * \brief Add a 16-bit CRC to each frame
+     * 
+     * \details The input stream is divided into fixed length frames (of length
+     * bits) and a 16-bit CRC is added to the end of each frame.
+     *
      * \ingroup c4fm
      *
      */

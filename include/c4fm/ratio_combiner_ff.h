@@ -29,7 +29,10 @@ namespace gr {
   namespace c4fm {
 
     /*!
-     * \brief The output stream is a weighted sum of the two input streams:
+     * \brief
+     * Weighted sum of two streams
+     *
+     * \details The output stream is a weighted sum of the two input streams:
      * out[i] = in0[i]*sin(angle)**2 + in1[i]*cos(angle)**2.
      * Angle is measured in degrees (not radians). Its value can be updated
      * dynamically by sending the block an asynchronous message containing an

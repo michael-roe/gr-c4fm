@@ -29,7 +29,8 @@ namespace gr {
   namespace c4fm {
 
     /*!
-     * \brief The output is equal to the input with its sign inverted according
+     * \brief Whiten using the output of an LFSR
+     * \details The output is equal to the input with its sign inverted according
      * to the output of a linear feedback shift register. After length samples
      * have been processed, the LFSR is reset to its initial state.
      * \ingroup c4fm

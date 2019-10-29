@@ -29,7 +29,9 @@ namespace gr {
   namespace c4fm {
 
     /*!
-     * \brief This block expects its input to stream to contain fixed length frames,
+     * \brief Insert zeros in place of missing frames
+     *
+     * \details This block expects its input to stream to contain fixed length frames,
      * with the start of each frame having a "frame_number" tag containing a sequence
      * number modulo frame_total. If the frame_number tag indicates that one or
      * more frames have been lost (i.e. it is not the previous frame_number plus
