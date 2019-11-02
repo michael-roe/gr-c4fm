@@ -40,5 +40,6 @@ install(FILES
     c4fm_tag_to_message_f.xml
     c4fm_tag_to_message_c.xml
     c4fm_maximal_ratio.xml
-    c4fm_splitter_cc.xml DESTINATION share/gnuradio/grc/blocks
+    c4fm_splitter_cc.xml
+    c4fm_frequency_locked_loop_ff.xml DESTINATION share/gnuradio/grc/blocks
 )

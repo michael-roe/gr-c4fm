@@ -1,0 +1,15 @@
+<block>
+  <name>Frequency Locked Loop</name>
+  <key>c4fm_frequency_locked_loop_ff</key>
+  <category>[C4FM]</category>
+  <import>import c4fm</import>
+  <make>c4fm.frequency_locked_loop_ff()</make>
+  <sink>
+    <name>in</name>
+    <type>float</type>
+  </sink>
+  <source>
+    <name>out</name>
+    <type>float</type>
+  </source>
+</block>

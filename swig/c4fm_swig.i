@@ -31,6 +31,7 @@
 #include "c4fm/tag_to_message_c.h"
 #include "c4fm/maximal_ratio.h"
 #include "c4fm/splitter_cc.h"
+#include "c4fm/frequency_locked_loop_ff.h"
 %}
 
 
@@ -80,3 +81,5 @@ GR_SWIG_BLOCK_MAGIC2(c4fm, tag_to_message_c);
 GR_SWIG_BLOCK_MAGIC2(c4fm, maximal_ratio);
 %include "c4fm/splitter_cc.h"
 GR_SWIG_BLOCK_MAGIC2(c4fm, splitter_cc);
+%include "c4fm/frequency_locked_loop_ff.h"
+GR_SWIG_BLOCK_MAGIC2(c4fm, frequency_locked_loop_ff);
