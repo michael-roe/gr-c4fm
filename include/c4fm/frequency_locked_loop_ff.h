@@ -29,8 +29,21 @@ namespace gr {
   namespace c4fm {
 
     /*!
-     * \brief <+description of block+>
+     * \brief Frequncy Locked Loop
      * \ingroup c4fm
+     * \details
+     * This block expects its input to be the output of an FM demodulator. It shifts
+     * the signal up or down to correct for small errors in the carrier frequency.
+     *
+     * The shift is chosen to maximize the power passed through a band-edge filter
+     * that starts at +/-3 and ends at +/-(3+rolloff). (The signal will be centered on zero
+     * when this power is maximized). It is computed by taking the time-average of the
+     * derivative of the band-edge filter at the current input value.
+     * 
+     * The samples parameter gives the number of input samples between updates of the shift.
+     *
+     * The band-edge filter is a raised cosine. A typical value of the rolloff parameter
+     * is 1.6.
      *
      */
     class C4FM_API frequency_locked_loop_ff : virtual public gr::sync_block
