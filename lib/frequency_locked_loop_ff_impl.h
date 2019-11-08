@@ -31,6 +31,7 @@ namespace gr {
      private:
       int d_count;
       int d_index;
+      int d_samples;
       double d_rolloff;
       double d_delta_f;
       double d_derivative;
@@ -38,7 +39,7 @@ namespace gr {
       int d_histogram[200];
 
      public:
-      frequency_locked_loop_ff_impl();
+      frequency_locked_loop_ff_impl(double rolloff, int samples);
       ~frequency_locked_loop_ff_impl();
 
       // Where all the action really happens

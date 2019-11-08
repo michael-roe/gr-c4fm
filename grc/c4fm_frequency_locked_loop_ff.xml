@@ -3,7 +3,17 @@
   <key>c4fm_frequency_locked_loop_ff</key>
   <category>[C4FM]</category>
   <import>import c4fm</import>
-  <make>c4fm.frequency_locked_loop_ff()</make>
+  <make>c4fm.frequency_locked_loop_ff($rolloff, $samples)</make>
+  <param>
+    <name>Rolloff</name>
+    <key>rolloff</key>
+    <type>real</type>
+  </param>
+  <param>
+    <name>Samples</name>
+    <key>samples</key>
+    <type>int</type>
+  </param>
   <sink>
     <name>in</name>
     <type>float</type>

@@ -29,16 +29,16 @@ namespace gr {
   namespace c4fm {
 
     frequency_locked_loop_ff::sptr
-    frequency_locked_loop_ff::make()
+    frequency_locked_loop_ff::make(double rolloff, int samples)
     {
       return gnuradio::get_initial_sptr
-        (new frequency_locked_loop_ff_impl());
+        (new frequency_locked_loop_ff_impl(rolloff, samples));
     }
 
     /*
      * The private constructor
      */
-    frequency_locked_loop_ff_impl::frequency_locked_loop_ff_impl()
+    frequency_locked_loop_ff_impl::frequency_locked_loop_ff_impl(double rolloff, int samples)
       : gr::sync_block("frequency_locked_loop_ff",
               gr::io_signature::make(1, 1, sizeof(float)),
               gr::io_signature::make(1, 1, sizeof(float)))
@@ -47,7 +47,8 @@ namespace gr {
 
       d_count = 0;
       d_index = 0;
-      d_rolloff = 1.6;
+      d_samples = samples; /* 24000 */
+      d_rolloff = rolloff; /* 1.6 */
       d_delta_f = 0.0;
       d_derivative = 0.0;
       d_second = 0.0;
@@ -100,7 +101,7 @@ namespace gr {
 
 	out[i] = in[i] - d_delta_f;
 
-	if (d_count == 24000)
+	if (d_count == d_samples)
         {
 #if 0
 	  variance = 0.0;

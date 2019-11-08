@@ -580,7 +580,7 @@ namespace gr {
 
 	if ((s != 0) || (parity != 0))
         {
-          /* fprintf(stderr, "parity = %d, syndrome = %d\n", parity, s); */
+          fprintf(stderr, "parity = %d, syndrome = %d\n", parity, s);
           add_item_tag(0, d_offset+i*12, d_parity_error_key, pmt::PMT_T);
 	  d_previous_error = 1;
         }

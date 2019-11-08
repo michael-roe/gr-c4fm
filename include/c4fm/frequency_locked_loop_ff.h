@@ -1,6 +1,6 @@
 /* -*- c++ -*- */
 /* 
- * Copyright 2019 <+YOU OR YOUR COMPANY+>.
+ * Copyright 2019 Michael Roe.
  * 
  * This is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -46,7 +46,7 @@ namespace gr {
        * class. c4fm::frequency_locked_loop_ff::make is the public interface for
        * creating new instances.
        */
-      static sptr make();
+      static sptr make(double rolloff, int samples);
     };
 
   } // namespace c4fm
