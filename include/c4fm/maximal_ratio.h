@@ -42,7 +42,7 @@ namespace gr {
      * pair of "snr" and a double-precision value. The output is an asynchronous message
      * containing an ordered pair of "angle" and the mixing angle, measured in degrees.
      * 
-     * angle = atan(exp10(snr0 - snr1))*180.0/M_PI
+     * angle = atan(exp10((snr0 - snr1)*0.05*gain))*180.0/M_PI
      *
      * If the block receives three asynchronous messages from one channel without
      * receiving anything from the other channel, it assumes that there is no signal
@@ -50,6 +50,10 @@ namespace gr {
      * are not guaranteed to be delivered immediately, this can in principle happen
      * if the channel has non-zero SNR but its SNR reports have been delayed by the
      * scheduler.
+     *
+     * The gain parameter should be set to 1 if the SNR estimates are accurate.
+     * It can be set to an different value if the SNR estimates need to be scaled
+     * to obtain the true SNR.
      */
     class C4FM_API maximal_ratio : virtual public gr::sync_block
     {
