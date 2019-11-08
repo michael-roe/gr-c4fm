@@ -77,7 +77,9 @@ namespace gr {
           parity ^= (in[12*i+j] & 1);
           s ^= (in[12*i+j] & 1);
           if (s & 1)
-          s ^= w1;
+	  {
+            s ^= w1;
+	  }
           s = s >> 1;
 	  out[24*i+j] = in[12*i+j];
         }
