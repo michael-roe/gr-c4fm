@@ -45,5 +45,6 @@ install(FILES
     tag_to_message_c.h
     maximal_ratio.h
     splitter_cc.h
-    frequency_locked_loop_ff.h DESTINATION include/c4fm
+    frequency_locked_loop_ff.h
+    tag_to_message_b.h DESTINATION include/c4fm
 )

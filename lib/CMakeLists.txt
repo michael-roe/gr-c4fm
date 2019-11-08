@@ -50,6 +50,7 @@ list(APPEND c4fm_sources
     maximal_ratio_impl.cc
     splitter_cc_impl.cc
     frequency_locked_loop_ff_impl.cc
+    tag_to_message_b_impl.cc
 )
 
 set(c4fm_sources "${c4fm_sources}" PARENT_SCOPE)

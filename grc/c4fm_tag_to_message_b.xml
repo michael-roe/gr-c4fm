@@ -1,0 +1,20 @@
+<block>
+  <name>Tag to Message (byte)</name>
+  <key>c4fm_tag_to_message_b</key>
+  <category>[C4FM]</category>
+  <import>import c4fm</import>
+  <make>c4fm.tag_to_message_b($key)</make>
+  <param>
+    <name>Key</name>
+    <key>key</key>
+    <type>string</type>
+  </param>
+  <sink>
+    <name>in</name>
+    <type>byte</type>
+  </sink>
+  <source>
+    <name>out</name>
+    <type>message</type>
+  </source>
+</block>
