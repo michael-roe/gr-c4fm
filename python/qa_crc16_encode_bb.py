@@ -32,8 +32,19 @@ class qa_crc16_encode_bb (gr_unittest.TestCase):
         self.tb = None
 
     def test_001_t (self):
-        # set up fg
+        src_data = (0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                    1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+        expected_result = (0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+                1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                1, 1, 1, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0, 1, 1, 1)
+        src = blocks.vector_source_b(src_data)
+        crc = c4fm.crc16_encode_bb(16)
+        dst = blocks.vector_sink_b()
+        self.tb.connect(src, crc, dst)
         self.tb.run ()
+        result_data = dst.data()
+        self.assertEqual(result_data, expected_result)
         # check data
 
 
