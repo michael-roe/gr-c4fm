@@ -105,9 +105,10 @@ namespace gr {
 	  (d_skip == 2*d_length + 1) ||
 	  (d_skip == 3*d_length)) && (correlation > d_threshold2))
         {
-          if (d_skip >= 2*d_length)
+          if (d_skip >= 2*d_length - 1)
 	  {
-            fprintf(stderr, "low correlation after missing a frame\n");
+            fprintf(stderr, "Low correlation (%lf) after missing a frame\n",
+	      correlation);
 	  }
 	  add_item_tag(0, d_offset + i, pmt::intern("correlation"),
             pmt::from_double(correlation));
