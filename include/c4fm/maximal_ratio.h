@@ -29,9 +29,27 @@ namespace gr {
   namespace c4fm {
 
     /*!
-     * \brief <+description of block+>
+     * \brief Calculate the mixing ratio of two streams that will maximize the signal to
+     * noise ratio,
      * \ingroup c4fm
+     * \details
+     * This block forms part of a MIMO/diversity receiver. It takes as input estimates
+     * of the signal to noise ratio of two different sources of the same signal (e.g.
+     * from different antennas) and outputs the combining ratio that will maximize the
+     * SNR (assuming that the the two sources have statistically independent noise).
+     * 
+     * The SNR estimates are in the form of an asynchronous message containing an ordered
+     * pair of "snr" and a double-precision value. The output is an asynchronous message
+     * containing an ordered pair of "angle" and the mixing angle, measured in degrees.
+     * 
+     * angle = atan(exp10(snr0 - snr1))*180.0/M_PI
      *
+     * If the block receives three asynchronous messages from one channel without
+     * receiving anything from the other channel, it assumes that there is no signal
+     * on the quiet channel and assigns it an SNR of zero. As asynchronous messages
+     * are not guaranteed to be delivered immediately, this can in principle happen
+     * if the channel has non-zero SNR but its SNR reports have been delayed by the
+     * scheduler.
      */
     class C4FM_API maximal_ratio : virtual public gr::sync_block
     {
