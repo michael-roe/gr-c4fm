@@ -32,10 +32,15 @@ class qa_golay_decoder_bb (gr_unittest.TestCase):
         self.tb = None
 
     def test_001_t (self):
-        # set up fg
+        src_data = (1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 1, 1, 1, 0, 1, 0, 1)
+        expected_result = (1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+        src = blocks.vector_source_b(src_data)
+        golay = c4fm.golay_decoder_bb()
+        dst = blocks.vector_sink_b()
+        self.tb.connect(src, golay, dst)
         self.tb.run ()
-        # check data
-
+        result_data = dst.data()
+        self.assertEqual(result_data, expected_result)
 
 if __name__ == '__main__':
     gr_unittest.run(qa_golay_decoder_bb, "qa_golay_decoder_bb.xml")
