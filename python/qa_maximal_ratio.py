@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 # 
-# Copyright 2019 <+YOU OR YOUR COMPANY+>.
+# Copyright 2019 Michael Roe.
 # 
 # This is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -21,6 +21,8 @@
 
 from gnuradio import gr, gr_unittest
 from gnuradio import blocks
+import time
+import pmt
 import c4fm_swig as c4fm
 
 class qa_maximal_ratio (gr_unittest.TestCase):
@@ -32,10 +34,21 @@ class qa_maximal_ratio (gr_unittest.TestCase):
         self.tb = None
 
     def test_001_t (self):
-        # set up fg
-        self.tb.run ()
-        # check data
-
+        msg = pmt.cons(pmt.intern("snr"), pmt.from_double(20.0))
+        src0 = blocks.message_strobe(msg, 500)
+        src1 = blocks.message_strobe(msg, 500)
+        ratio = c4fm.maximal_ratio(1.0)
+        dst = blocks.message_debug()
+        self.tb.msg_connect(src0, "strobe", ratio, "in0")
+        self.tb.msg_connect(src1, "strobe", ratio, "in1")
+        self.tb.msg_connect(ratio, "out", dst, "store")
+        self.tb.start()
+        time.sleep(1)
+        self.tb.stop()
+        self.tb.wait()
+        rec_msg = dst.get_message(1)
+        self.assertTrue(pmt.eqv(pmt.car(rec_msg), pmt.intern("angle")))
+        self.assertAlmostEqual(pmt.to_double(pmt.cdr(rec_msg)), 45.0)
 
 if __name__ == '__main__':
     gr_unittest.run(qa_maximal_ratio, "qa_maximal_ratio.xml")
