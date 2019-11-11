@@ -36,6 +36,8 @@ namespace gr {
       int d_copy;
       int d_frame;
       int d_missed;
+      int d_pad_index;
+      char d_pad_pattern[128];
 
      public:
       pad_missing_bb_impl(int length, int subframes);

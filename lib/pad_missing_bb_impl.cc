@@ -44,6 +44,8 @@ namespace gr {
               gr::io_signature::make(1, 1, sizeof(unsigned char)))
     
     {
+      int i;
+
       set_tag_propagation_policy(TPP_DONT);
       d_offset = 0;
       d_length = length;
@@ -52,6 +54,15 @@ namespace gr {
       d_copy = 0;
       d_frame = -1;
       d_missed = 0;
+
+      for (i=0; i<128; i++)
+      {
+        d_pad_pattern[i] = 0;
+      }
+      if (d_length/d_subframes > 128)
+      {
+        fprintf(stderr, "pad_missing_bb: Error: subframes longer than 128 bytes are not supported\n");
+      }
     }
 
     /*
@@ -98,8 +109,13 @@ namespace gr {
           {
 	    add_item_tag(0, d_offset + produced, pmt::intern("deleted_frame"),
 	      pmt::PMT_T);
+	    d_pad_index = 0;
           }
-          *out = 0xff;
+	  else
+	  {
+	    d_pad_index++;
+	  }
+          *out = d_pad_pattern[d_pad_index];
 	  out++;
 	  produced++;
 	  d_pad--;
@@ -154,6 +170,7 @@ namespace gr {
 	      /* fprintf(stderr, "Missing frame! (%d missed)\n", d_missed); */
 	      d_pad = d_length;
 	      d_frame = (d_frame + 1) & 0x7;
+	      d_pad_index = 0;
 	    }
 	    else
             {
