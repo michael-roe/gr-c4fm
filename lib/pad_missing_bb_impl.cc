@@ -80,6 +80,7 @@ namespace gr {
       int tag_index = 0;
       int tag_index2;
       int frame_number;
+      int skip;
       std::vector<tag_t> tags;
 
       get_tags_in_range(tags, 0, nitems_read(0), nitems_read(0)+noutput_items); 
@@ -122,20 +123,32 @@ namespace gr {
 	else
 	{
 	  tag_index2 = tag_index;
+	  frame_number = -1;
+	  skip = 0;
           while ((tag_index2 < tags.size()) &&
-	    ! pmt::equal(pmt::intern("frame_number"), tags[tag_index2].key))
+	    (tags[tag_index2].offset == nitems_read(0) + consumed))
 	  {
+	    if (pmt::equal(pmt::intern("frame_number"), tags[tag_index2].key))
+	      frame_number = pmt::to_long(tags[tag_index2].value);
+	    if (pmt::equal(pmt::intern("skip"), tags[tag_index2].key))
+	      skip = pmt::to_long(tags[tag_index2].value);
 	    tag_index2++;
 	  }
-	  if (tag_index2 >= tags.size())
+	  if (frame_number == -1)
 	  {
-	    fprintf(stderr, "pad_missing_bb: tag not found\n");
+	    fprintf(stderr, "pad_missing_bb: frame_number tag not found\n");
 	  }
 	  else
 	  {
-	    /* fprintf(stderr, "FN = %d\n", pmt::to_long(tags[tag_index2].value)); */
-	    frame_number = pmt::to_long(tags[tag_index2].value);
-	    if ((d_frame >= 0) && (frame_number != ((d_frame + 1) & 0x7)))
+#if 0
+	    if (skip != 0)
+	    {
+	      fprintf(stderr, "pad_missing: skip = %d\n", skip);
+	    }
+#endif
+	    if ((d_frame >= 0) &&
+	      (frame_number != ((d_frame + 1) & 0x7)) &&
+	      (skip < 480*7 + 2))
 	    {
 	      d_missed++;
 	      /* fprintf(stderr, "Missing frame! (%d missed)\n", d_missed); */
