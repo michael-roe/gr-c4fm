@@ -32,9 +32,26 @@ class qa_bernoulli_source_b (gr_unittest.TestCase):
         self.tb = None
 
     def test_001_t (self):
-        # set up fg
+        expected_result = (250.0, 250.0)
+        rng = c4fm.bernoulli_source_b(0.25)
+        head = blocks.head(gr.sizeof_char, 2000)
+        convert = blocks.uchar_to_float()
+        integrate = blocks.integrate_ff(1000)
+        dst = blocks.vector_sink_f()
+        self.tb.connect(rng, head)
+        self.tb.connect(head, convert)
+        self.tb.connect(convert, integrate)
+        self.tb.connect(integrate, dst)
         self.tb.run ()
         # check data
+        # The result is a random variable of mean 0.25*1000 = 250
+        # This test is statistical: there is a small probablity that it will fail
+        self.assertLess(dst.data()[0], 350.0) 
+        self.assertGreater(dst.data()[0], 150.0)
+        self.assertLess(dst.data()[1], 350.0) 
+        self.assertGreater(dst.data()[1], 150.0)
+
+        # self.assertFloatTuplesAlmostEqual(expected_result, dst.data(), 1)
 
 
 if __name__ == '__main__':
