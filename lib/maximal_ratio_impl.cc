@@ -38,8 +38,21 @@ namespace gr {
     void maximal_ratio_impl::set_snr0(pmt::pmt_t msg)
     {
       double delta;
+      int updated;
 
-      if (pmt::is_pair(msg) && pmt::is_real(pmt::cdr(msg)))
+      updated = 0;
+      if (pmt::is_real(msg))
+      {
+        d_snr0 =  pmt::to_double(msg);
+	updated = 1;
+      }
+      else if (pmt::is_pair(msg) && pmt::is_real(pmt::cdr(msg)))
+      {
+        d_snr0 =  pmt::to_double(pmt::cdr(msg));
+	updated = 1;
+      }
+
+      if (updated)
       {
         d_count1 = 0;
         if (d_count0 > 2)
@@ -50,7 +63,6 @@ namespace gr {
 	{
 	  d_count0++;
 	}
-        d_snr0 =  pmt::to_double(pmt::cdr(msg));
         if (d_snr1 != 0.0)
         {
           delta = (d_snr0 - d_snr1)*0.1*0.5*d_gain;
@@ -67,8 +79,21 @@ namespace gr {
     void maximal_ratio_impl::set_snr1(pmt::pmt_t msg)
     {
       double delta;
+      int updated;
 
-      if (pmt::is_pair(msg) && pmt::is_real(pmt::cdr(msg)))
+      updated = 0;
+      if (pmt::is_real(msg))
+      {
+        d_snr1 = pmt::to_double(msg);
+	updated = 1;
+      }
+      else if (pmt::is_pair(msg) && pmt::is_real(pmt::cdr(msg)))
+      {
+        d_snr1 =  pmt::to_double(pmt::cdr(msg));
+	updated = 1;
+      }
+
+      if (updated)
       {
 	d_count0 = 0;
 	if (d_count1 > 2)
@@ -79,7 +104,6 @@ namespace gr {
         {
           d_count1++;
         }
-        d_snr1 =  pmt::to_double(pmt::cdr(msg));
 	if (d_snr0 != 0.0)
         {
           delta = (d_snr0 - d_snr1)*0.1*0.5*d_gain;
