@@ -33,7 +33,7 @@ class qa_bernoulli_source_b (gr_unittest.TestCase):
 
     def test_001_t (self):
         expected_result = (250.0, 250.0)
-        rng = c4fm.bernoulli_source_b(0.25)
+        rng = c4fm.bernoulli_source_b(0.25, 0)
         head = blocks.head(gr.sizeof_char, 2000)
         convert = blocks.uchar_to_float()
         integrate = blocks.integrate_ff(1000)

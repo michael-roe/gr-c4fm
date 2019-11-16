@@ -48,7 +48,7 @@ namespace gr {
        * class. c4fm::bernoulli_source_b::make is the public interface for
        * creating new instances.
        */
-      static sptr make(double p);
+      static sptr make(double p, unsigned int seed);
     };
 
   } // namespace c4fm

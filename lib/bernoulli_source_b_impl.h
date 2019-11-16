@@ -22,6 +22,7 @@
 #define INCLUDED_C4FM_BERNOULLI_SOURCE_B_IMPL_H
 
 #include <c4fm/bernoulli_source_b.h>
+#include <gnuradio/random.h>
 
 namespace gr {
   namespace c4fm {
@@ -29,10 +30,11 @@ namespace gr {
     class bernoulli_source_b_impl : public bernoulli_source_b
     {
      private:
-       double d_p;
+       float d_p;
+       gr::random *d_rng;
 
      public:
-      bernoulli_source_b_impl(double p);
+      bernoulli_source_b_impl(double p, unsigned int seed);
       ~bernoulli_source_b_impl();
 
       // Where all the action really happens

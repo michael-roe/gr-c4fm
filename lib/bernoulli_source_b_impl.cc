@@ -29,21 +29,22 @@ namespace gr {
   namespace c4fm {
 
     bernoulli_source_b::sptr
-    bernoulli_source_b::make(double p)
+    bernoulli_source_b::make(double p, unsigned int seed)
     {
       return gnuradio::get_initial_sptr
-        (new bernoulli_source_b_impl(p));
+        (new bernoulli_source_b_impl(p, seed));
     }
 
     /*
      * The private constructor
      */
-    bernoulli_source_b_impl::bernoulli_source_b_impl(double p)
+    bernoulli_source_b_impl::bernoulli_source_b_impl(double p, unsigned int seed)
       : gr::sync_block("bernoulli_source_b",
               gr::io_signature::make(0, 0, 0),
               gr::io_signature::make(1, 1, sizeof(char)))
     {
       d_p = p;
+      d_rng = new gr::random(seed);
     }
 
     /*
@@ -51,6 +52,7 @@ namespace gr {
      */
     bernoulli_source_b_impl::~bernoulli_source_b_impl()
     {
+      delete d_rng;
     }
 
     int
@@ -60,11 +62,11 @@ namespace gr {
     {
       int i;
       char *out = (char *) output_items[0];
-      double q;
+      float q;
 
       for (i = 0; i < noutput_items; i++)
       {
-        q = ((double) random())/((double) RAND_MAX);
+        q = d_rng->ran1();
 	if (q < d_p)
           out[i] = 1; 
 	else
