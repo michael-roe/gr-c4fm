@@ -29,20 +29,22 @@ namespace gr {
   namespace c4fm {
 
     c4fm_soft_decision_fc::sptr
-    c4fm_soft_decision_fc::make()
+    c4fm_soft_decision_fc::make(double gain)
     {
       return gnuradio::get_initial_sptr
-        (new c4fm_soft_decision_fc_impl());
+        (new c4fm_soft_decision_fc_impl(gain));
     }
 
     /*
      * The private constructor
      */
-    c4fm_soft_decision_fc_impl::c4fm_soft_decision_fc_impl()
+    c4fm_soft_decision_fc_impl::c4fm_soft_decision_fc_impl(double gain)
       : gr::sync_block("c4fm_soft_decision_fc",
               gr::io_signature::make(1, 1, sizeof(float)),
               gr::io_signature::make(1, 1, sizeof(gr_complex)))
-    {}
+    {
+      d_gain = gain;
+    }
 
     /*
      * Our virtual destructor.
@@ -66,23 +68,23 @@ namespace gr {
 	f = in[i];
 	if (f < -3.0)
         {
-          out[i] = gr_complex(1.0, 1.0);
+          out[i] = gr_complex(d_gain, d_gain);
 	}
 	else if (f < -1.0)
         {
-	  out[i] = gr_complex(1.0, -2-f);
+	  out[i] = gr_complex(d_gain, d_gain*(-2-f));
 	}
         else if (f < 1.0)
         {
-	  out[i] = gr_complex(-f, -1.0);
+	  out[i] = gr_complex(-d_gain*f, -d_gain);
         }
         else if (f < 3.0)
 	{
-	  out[i] = gr_complex(-1.0, f-2);
+	  out[i] = gr_complex(-d_gain, d_gain*(f-2));
         }
         else
 	{	
-          out[i] = gr_complex(-1.0, 1.0);
+          out[i] = gr_complex(-d_gain, d_gain);
 	}
       }
 

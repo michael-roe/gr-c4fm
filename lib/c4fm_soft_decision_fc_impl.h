@@ -29,10 +29,10 @@ namespace gr {
     class c4fm_soft_decision_fc_impl : public c4fm_soft_decision_fc
     {
      private:
-      // Nothing to declare in this block.
+      float d_gain;
 
      public:
-      c4fm_soft_decision_fc_impl();
+      c4fm_soft_decision_fc_impl(double gain);
       ~c4fm_soft_decision_fc_impl();
 
       // Where all the action really happens

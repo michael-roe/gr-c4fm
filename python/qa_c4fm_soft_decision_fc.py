@@ -35,7 +35,7 @@ class qa_c4fm_soft_decision_fc (gr_unittest.TestCase):
         src_data = (-3, -2, -1, 0, 1, 2, 3)
         expected_result = (1+1j, 1+0j, 1-1j, 0-1j, -1-1j, -1+0j, -1+1j)
         src = blocks.vector_source_f(src_data)
-        slicer = c4fm.c4fm_soft_decision_fc()
+        slicer = c4fm.c4fm_soft_decision_fc(1.0)
         dst = blocks.vector_sink_c()
         self.tb.connect(src, slicer)
         self.tb.connect(slicer, dst)

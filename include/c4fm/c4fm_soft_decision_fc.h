@@ -54,7 +54,7 @@ namespace gr {
        * class. c4fm::c4fm_soft_decision_fc::make is the public interface for
        * creating new instances.
        */
-      static sptr make();
+      static sptr make(double gain);
     };
 
   } // namespace c4fm
