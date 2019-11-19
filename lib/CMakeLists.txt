@@ -25,6 +25,7 @@ include(GrPlatform) #define LIB_SUFFIX
 
 list(APPEND c4fm_sources
     bernoulli_source_b_impl.cc
+    quaternary_slicer_cb_impl.cc
 )
 
 set(c4fm_sources "${c4fm_sources}" PARENT_SCOPE)

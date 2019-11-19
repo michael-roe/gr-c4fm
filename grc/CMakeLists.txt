@@ -19,5 +19,6 @@
 # Boston, MA 02110-1301, USA.
 
 install(FILES
-    c4fm_bernoulli_source_b.block.yml DESTINATION share/gnuradio/grc/blocks
+    c4fm_bernoulli_source_b.block.yml
+    c4fm_quaternary_slicer_cb.block.yml DESTINATION share/gnuradio/grc/blocks
 )

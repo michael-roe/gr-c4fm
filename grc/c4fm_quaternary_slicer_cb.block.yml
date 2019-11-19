@@ -1,0 +1,15 @@
+id: c4fm_quaternary_slicer_cb
+label: Quaternary Slicer
+category: '[C4FM]'
+templates:
+  imports: import c4fm
+  make: c4fm.quaternary_slicer_cb()
+inputs:
+- label: in
+  domain: stream
+  dtype: complex
+outputs:
+- label: out
+  domain: stream
+  dtype: byte
+file_format: 1

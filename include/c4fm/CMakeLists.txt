@@ -23,5 +23,6 @@
 ########################################################################
 install(FILES
     api.h
-    bernoulli_source_b.h DESTINATION include/c4fm
+    bernoulli_source_b.h
+    quaternary_slicer_cb.h DESTINATION include/c4fm
 )

@@ -9,7 +9,10 @@
 
 %{
 #include "c4fm/bernoulli_source_b.h"
+#include "c4fm/quaternary_slicer_cb.h"
 %}
 
 %include "c4fm/bernoulli_source_b.h"
 GR_SWIG_BLOCK_MAGIC2(c4fm, bernoulli_source_b);
+%include "c4fm/quaternary_slicer_cb.h"
+GR_SWIG_BLOCK_MAGIC2(c4fm, quaternary_slicer_cb);
