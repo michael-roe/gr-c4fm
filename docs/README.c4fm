@@ -1,7 +1,5 @@
-This is a collection of gnuradio blocks for implementing four level frequency
-shift keying. To use it, you will alos need to have gnuradio installed.
-
-To use the c4fm blocks, the Python namespaces
+This is the c4fm-write-a-block package meant as a guide to building
+out-of-tree packages. To use the c4fm blocks, the Python namespaces
 is in 'c4fm', which is imported as:
 
     import c4fm

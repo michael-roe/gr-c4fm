@@ -1,0 +1,18 @@
+id: c4fm_bernoulli_source_b
+label: bernoulli source b
+category: '[C4fm]'
+templates:
+  imports: import c4fm
+  make: c4fm.bernoulli_source_b(${p}, ${seed})
+parameters:
+- id: p
+  label: P
+  dtype: real
+- id: seed
+  label: Seed
+  dtype: raw
+outputs:
+- label: out
+  domain: stream
+  dtype: byte
+file_format: 1
