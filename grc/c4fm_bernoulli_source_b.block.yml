@@ -1,6 +1,6 @@
 id: c4fm_bernoulli_source_b
-label: bernoulli source b
-category: '[C4fm]'
+label: Bernoulli Source
+category: '[C4FM]'
 templates:
   imports: import c4fm
   make: c4fm.bernoulli_source_b(${p}, ${seed})
