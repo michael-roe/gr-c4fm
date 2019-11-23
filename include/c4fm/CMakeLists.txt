@@ -24,5 +24,7 @@
 install(FILES
     api.h
     bernoulli_source_b.h
-    quaternary_slicer_cb.h DESTINATION include/c4fm
+    quaternary_slicer_cb.h
+    c4fm_soft_decision_fc.h
+    correlate_access_code_tag_cc.h DESTINATION include/c4fm
 )

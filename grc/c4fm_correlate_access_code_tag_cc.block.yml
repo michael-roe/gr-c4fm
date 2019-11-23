@@ -1,0 +1,32 @@
+id: c4fm_correlate_access_code_tag_cc
+label: Correlate Access Code Tag (complex)
+category: '[C4FM]'
+templates:
+  imports: import c4fm
+  make: c4fm.correlate_access_code_tag_cc(${sync_len}, ${sync}, ${length}, ${threshold},
+    ${threshold2})
+parameters:
+- id: sync_len
+  label: Sync Length
+  dtype: int
+- id: sync
+  label: Sync Word
+  dtype: int
+- id: length
+  label: Frame Length
+  dtype: int
+- id: threshold
+  label: Threshold
+  dtype: real
+- id: threshold2
+  label: Threshold2
+  dtype: real
+inputs:
+- label: in
+  domain: stream
+  dtype: complex
+outputs:
+- label: out
+  domain: stream
+  dtype: complex
+file_format: 1
