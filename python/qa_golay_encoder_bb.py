@@ -23,7 +23,7 @@ from gnuradio import gr, gr_unittest
 from gnuradio import blocks
 import c4fm_swig as c4fm
 
-class qa_crc16_encode_bb (gr_unittest.TestCase):
+class qa_golay_encoder_bb (gr_unittest.TestCase):
 
     def setUp (self):
         self.tb = gr.top_block ()
@@ -32,20 +32,12 @@ class qa_crc16_encode_bb (gr_unittest.TestCase):
         self.tb = None
 
     def test_001_t (self):
-        src_data = (0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                    1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                    )
-        expected_result = (0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
-                1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                1, 1, 1, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0, 1, 1, 1,
-                )
+        src_data = (1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+        expected_result = (1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 1, 1, 1, 0, 1, 0, 1)
         src = blocks.vector_source_b(src_data)
-        tagger = blocks.stream_to_tagged_stream(gr.sizeof_char, 1, 16, "packet_len")
-        crc = c4fm.crc16_encode_bb("packet_len", 0)
+        golay = c4fm.golay_encoder_bb()
         dst = blocks.vector_sink_b()
-        self.tb.connect(src, tagger, crc)
-        self.tb.connect(crc, dst)
+        self.tb.connect(src, golay, dst)
         self.tb.run ()
         result_data = dst.data()
         self.assertEqual(result_data, expected_result)
@@ -53,4 +45,4 @@ class qa_crc16_encode_bb (gr_unittest.TestCase):
 
 
 if __name__ == '__main__':
-    gr_unittest.run(qa_crc16_encode_bb)
+    gr_unittest.run(qa_golay_encoder_bb, "qa_golay_encoder_bb.xml")

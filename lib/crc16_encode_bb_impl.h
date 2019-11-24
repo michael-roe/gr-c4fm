@@ -31,12 +31,13 @@ namespace gr {
      private:
       unsigned long long d_offset;
       pmt::pmt_t d_length_tag;
+      int d_default_length;
       int d_data_todo;
       int d_crc_todo;
       unsigned int d_crc;
 
      public:
-      crc16_encode_bb_impl(const std::string &length_tag);
+      crc16_encode_bb_impl(const std::string &length_tag, int default_length);
       ~crc16_encode_bb_impl();
 
       // Where all the action really happens

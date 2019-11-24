@@ -27,5 +27,7 @@ install(FILES
     quaternary_slicer_cb.h
     c4fm_soft_decision_fc.h
     correlate_access_code_tag_cc.h
-    crc16_encode_bb.h DESTINATION include/c4fm
+    crc16_encode_bb.h
+    golay_encoder_bb.h
+    type_demux_cc.h DESTINATION include/c4fm
 )

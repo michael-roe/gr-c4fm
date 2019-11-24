@@ -1,0 +1,25 @@
+id: c4fm_type_demux_cc
+label: Type Demux
+category: '[C4FM]'
+templates:
+  imports: import c4fm
+  make: c4fm.type_demux_cc(${frame_type}, ${data_type}, ${length})
+parameters:
+- id: frame_type
+  label: Frame Type
+  dtype: int
+- id: data_type
+  label: Data Type
+  dtype: int
+- id: length
+  label: Length
+  dtype: int
+inputs:
+- label: in
+  domain: stream
+  dtype: complex
+outputs:
+- label: out
+  domain: stream
+  dtype: complex
+file_format: 1

@@ -29,23 +29,24 @@ namespace gr {
   namespace c4fm {
 
     crc16_encode_bb::sptr
-    crc16_encode_bb::make(const std::string &length_tag)
+    crc16_encode_bb::make(const std::string &length_tag, int default_length)
     {
       return gnuradio::get_initial_sptr
-        (new crc16_encode_bb_impl(length_tag));
+        (new crc16_encode_bb_impl(length_tag, default_length));
     }
 
 
     /*
      * The private constructor
      */
-    crc16_encode_bb_impl::crc16_encode_bb_impl(const std::string &length_tag)
+    crc16_encode_bb_impl::crc16_encode_bb_impl(const std::string &length_tag, int default_length)
       : gr::block("crc16_encode_bb",
               gr::io_signature::make(1, 1, sizeof(char)),
               gr::io_signature::make(1, 1, sizeof(char)))
     {
       set_tag_propagation_policy(TPP_DONT);
       d_length_tag = pmt::intern(length_tag.c_str());
+      d_default_length = default_length;
       d_offset = 0;
       d_data_todo = 0;
       d_crc_todo = 0;
@@ -132,7 +133,7 @@ namespace gr {
 	}
 	else
 	{
-	  d_data_todo = 0;
+	  d_data_todo = d_default_length;
 	  d_crc = 0;
 	  out[produced] = in[consumed];
 	  feedback = in[consumed] ^ (d_crc >> 15);
