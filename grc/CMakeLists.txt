@@ -25,5 +25,6 @@ install(FILES
     c4fm_correlate_access_code_tag_cc.block.yml
     c4fm_crc16_encode_bb.block.yml
     c4fm_golay_encoder_bb.block.yml
-    c4fm_type_demux_cc.block.yml DESTINATION share/gnuradio/grc/blocks
+    c4fm_type_demux_cc.block.yml
+    c4fm_crc16_decode_bb.block.yml DESTINATION share/gnuradio/grc/blocks
 )

@@ -31,6 +31,7 @@ list(APPEND c4fm_sources
     crc16_encode_bb_impl.cc
     golay_encoder_bb_impl.cc
     type_demux_cc_impl.cc
+    crc16_decode_bb_impl.cc
 )
 
 set(c4fm_sources "${c4fm_sources}" PARENT_SCOPE)

@@ -49,3 +49,4 @@ GR_ADD_TEST(qa_correlate_access_code_tag_cc ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT
 GR_ADD_TEST(qa_crc16_encode_bb ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_crc16_encode_bb.py)
 GR_ADD_TEST(qa_golay_encoder_bb ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_golay_encoder_bb.py)
 GR_ADD_TEST(qa_type_demux_cc ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_type_demux_cc.py)
+GR_ADD_TEST(qa_crc16_decode_bb ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_crc16_decode_bb.py)

@@ -29,5 +29,6 @@ install(FILES
     correlate_access_code_tag_cc.h
     crc16_encode_bb.h
     golay_encoder_bb.h
-    type_demux_cc.h DESTINATION include/c4fm
+    type_demux_cc.h
+    crc16_decode_bb.h DESTINATION include/c4fm
 )
