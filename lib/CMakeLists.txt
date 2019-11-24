@@ -28,6 +28,7 @@ list(APPEND c4fm_sources
     quaternary_slicer_cb_impl.cc
     c4fm_soft_decision_fc_impl.cc
     correlate_access_code_tag_cc_impl.cc
+    crc16_encode_bb_impl.cc
 )
 
 set(c4fm_sources "${c4fm_sources}" PARENT_SCOPE)

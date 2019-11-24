@@ -1,0 +1,19 @@
+id: c4fm_crc16_encode_bb
+label: CRC16 Encode
+category: '[C4FM]'
+templates:
+  imports: import c4fm
+  make: c4fm.crc16_encode_bb(${length_tag})
+parameters:
+- id: length_tag
+  label: Length Tag
+  dtype: string
+inputs:
+- label: in
+  domain: stream
+  dtype: byte
+outputs:
+- label: out
+  domain: stream
+  dtype: byte
+file_format: 1

@@ -46,3 +46,4 @@ GR_ADD_TEST(qa_bernoulli_source_b ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DI
 GR_ADD_TEST(qa_quaternary_slicer_cb ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_quaternary_slicer_cb.py)
 GR_ADD_TEST(qa_c4fm_soft_decision_fc ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_c4fm_soft_decision_fc.py)
 GR_ADD_TEST(qa_correlate_access_code_tag_cc ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_correlate_access_code_tag_cc_.py)
+GR_ADD_TEST(qa_crc16_encode_bb ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_crc16_encode_bb.py)

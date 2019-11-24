@@ -22,5 +22,6 @@ install(FILES
     c4fm_bernoulli_source_b.block.yml
     c4fm_quaternary_slicer_cb.block.yml
     c4fm_c4fm_soft_decision_fc.block.yml
-    c4fm_correlate_access_code_tag_cc.block.yml DESTINATION share/gnuradio/grc/blocks
+    c4fm_correlate_access_code_tag_cc.block.yml
+    c4fm_crc16_encode_bb.block.yml DESTINATION share/gnuradio/grc/blocks
 )
