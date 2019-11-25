@@ -16,6 +16,7 @@
 #include "c4fm/golay_encoder_bb.h"
 #include "c4fm/type_demux_cc.h"
 #include "c4fm/crc16_decode_bb.h"
+#include "c4fm/complex_to_interleaved_float.h"
 %}
 
 %include "c4fm/bernoulli_source_b.h"
@@ -34,3 +35,5 @@ GR_SWIG_BLOCK_MAGIC2(c4fm, golay_encoder_bb);
 GR_SWIG_BLOCK_MAGIC2(c4fm, type_demux_cc);
 %include "c4fm/crc16_decode_bb.h"
 GR_SWIG_BLOCK_MAGIC2(c4fm, crc16_decode_bb);
+%include "c4fm/complex_to_interleaved_float.h"
+GR_SWIG_BLOCK_MAGIC2(c4fm, complex_to_interleaved_float);

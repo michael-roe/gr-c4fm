@@ -1,0 +1,15 @@
+id: c4fm_complex_to_interleaved_float
+label: Complex to iFloat
+category: '[C4FM]'
+templates:
+  imports: import c4fm
+  make: c4fm.complex_to_interleaved_float()
+inputs:
+- label: in
+  domain: stream
+  dtype: complex
+outputs:
+- label: out
+  domain: stream
+  dtype: float
+file_format: 1
