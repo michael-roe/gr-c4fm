@@ -72,16 +72,22 @@ namespace gr {
     {
       const char *in = (const char *) input_items[0];
       char *out = (char *) output_items[0];
+      std::vector<tag_t> tags;
       unsigned int feedback;
       unsigned int mask;
       int produced;
       int consumed;
       int available;
       int i;
+      int tag_index;
+
 
       available = noutput_items + 16;
       produced = 0;
       consumed = 0;
+
+      get_tags_in_range(tags, 0, nitems_read(0), nitems_read(0) + available);
+      tag_index = 0;
 
       while ((produced < noutput_items) && (consumed < available - 16))
       {
@@ -89,6 +95,13 @@ namespace gr {
         {
 	  out[produced] = in[consumed];
 	  feedback = in[consumed] ^ (d_crc >> 15);
+	  while ((tag_index < tags.size()) && 
+	    (tags[tag_index].offset == nitems_read(0) + consumed))
+          {
+	    add_item_tag(0, d_offset + produced, tags[tag_index].key,
+	      tags[tag_index].value);
+	    tag_index++;
+	  }
 	  produced++;
 	  consumed++;
 	  d_crc = (d_crc << 1) & 0xffff;
@@ -100,6 +113,14 @@ namespace gr {
 	{
 	  out[produced] = in[consumed];
 	  feedback = in[consumed] ^ (d_crc >> 15);
+	  while ((tag_index < tags.size()) &&
+            (tags[tag_index].offset >= nitems_read(0) + consumed) &&
+	    (tags[tag_index].offset < nitems_read(0) + consumed + 17))
+          {
+	    add_item_tag(0, d_offset + produced, tags[tag_index].key,
+	      tags[tag_index].value);
+            tag_index++;
+          }
 	  d_crc = (d_crc << 1) & 0xffff;
 	  if (feedback)
             d_crc ^= 1 | (1 << 5) | (1 << 12);
@@ -115,7 +136,7 @@ namespace gr {
 	  /* fprintf(stderr, "recovered crc = %x\n", d_crc); */
 	  if (d_crc != 0xffff)
 	  {
-	    fprintf(stderr, "CRC error\n");
+	    /* fprintf(stderr, "CRC error\n"); */
 	    add_item_tag(0, d_offset + produced, pmt::intern("crc_error"), pmt::PMT_T);
 	  }
 	  produced++;
@@ -127,6 +148,14 @@ namespace gr {
 	  d_data_todo = d_default_length - 16;
 	  d_crc = 0;
 	  out[produced] = in[consumed];
+	  while ((tag_index < tags.size()) &&
+            (tags[tag_index].offset >= nitems_read(0) + consumed) &&
+	    (tags[tag_index].offset < nitems_read(0) + consumed + 17))
+          {
+	    add_item_tag(0, d_offset + produced, tags[tag_index].key,
+	      tags[tag_index].value);
+            tag_index++;
+          }
 	  d_crc = (d_crc << 1) & 0xffff;
 	  feedback = in[consumed] ^ (d_crc >> 15);
           if (feedback)
