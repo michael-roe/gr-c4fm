@@ -31,5 +31,6 @@ install(FILES
     golay_encoder_bb.h
     type_demux_cc.h
     crc16_decode_bb.h
-    complex_to_interleaved_float.h DESTINATION include/c4fm
+    complex_to_interleaved_float.h
+    frequency_locked_loop_ff.h DESTINATION include/c4fm
 )

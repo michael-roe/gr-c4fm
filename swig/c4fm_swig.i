@@ -17,6 +17,7 @@
 #include "c4fm/type_demux_cc.h"
 #include "c4fm/crc16_decode_bb.h"
 #include "c4fm/complex_to_interleaved_float.h"
+#include "c4fm/frequency_locked_loop_ff.h"
 %}
 
 %include "c4fm/bernoulli_source_b.h"
@@ -37,3 +38,5 @@ GR_SWIG_BLOCK_MAGIC2(c4fm, type_demux_cc);
 GR_SWIG_BLOCK_MAGIC2(c4fm, crc16_decode_bb);
 %include "c4fm/complex_to_interleaved_float.h"
 GR_SWIG_BLOCK_MAGIC2(c4fm, complex_to_interleaved_float);
+%include "c4fm/frequency_locked_loop_ff.h"
+GR_SWIG_BLOCK_MAGIC2(c4fm, frequency_locked_loop_ff);

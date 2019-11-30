@@ -27,5 +27,6 @@ install(FILES
     c4fm_golay_encoder_bb.block.yml
     c4fm_type_demux_cc.block.yml
     c4fm_crc16_decode_bb.block.yml
-    c4fm_complex_to_interleaved_float.block.yml DESTINATION share/gnuradio/grc/blocks
+    c4fm_complex_to_interleaved_float.block.yml
+    c4fm_frequency_locked_loop_ff.block.yml DESTINATION share/gnuradio/grc/blocks
 )

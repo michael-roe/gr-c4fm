@@ -33,6 +33,7 @@ list(APPEND c4fm_sources
     type_demux_cc_impl.cc
     crc16_decode_bb_impl.cc
     complex_to_interleaved_float_impl.cc
+    frequency_locked_loop_ff_impl.cc
 )
 
 set(c4fm_sources "${c4fm_sources}" PARENT_SCOPE)
