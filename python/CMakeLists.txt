@@ -52,3 +52,6 @@ GR_ADD_TEST(qa_type_demux_cc ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa
 GR_ADD_TEST(qa_crc16_decode_bb ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_crc16_decode_bb.py)
 GR_ADD_TEST(qa_complex_to_interleaved_float ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_complex_to_interleaved_float.py)
 GR_ADD_TEST(qa_frequency_locked_loop_ff ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_frequency_locked_loop_ff.py)
+GR_ADD_TEST(qa_time_transitions_bf ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_time_transitions_bf.py)
+GR_ADD_TEST(qa_hdlc_unstuff_bb ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_hdlc_unstuff_bb.py)
+GR_ADD_TEST(qa_hdlc_parse_addr ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_hdlc_parse_addr.py)

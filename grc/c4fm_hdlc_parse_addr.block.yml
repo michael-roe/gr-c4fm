@@ -1,0 +1,13 @@
+id: c4fm_hdlc_parse_addr
+label: HDLC Parse Address
+category: '[C4FM]'
+inputs:
+- domain: message
+  id: in
+outputs:
+- domain: message
+  id: out
+templates:
+  imports: import c4fm
+  make: c4fm.hdlc_parse_addr()
+file_format: 1

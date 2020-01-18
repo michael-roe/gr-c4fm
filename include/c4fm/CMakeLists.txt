@@ -32,5 +32,8 @@ install(FILES
     type_demux_cc.h
     crc16_decode_bb.h
     complex_to_interleaved_float.h
-    frequency_locked_loop_ff.h DESTINATION include/c4fm
+    frequency_locked_loop_ff.h
+    time_transitions_bf.h
+    hdlc_unstuff_bb.h
+    hdlc_parse_addr.h DESTINATION include/c4fm
 )
