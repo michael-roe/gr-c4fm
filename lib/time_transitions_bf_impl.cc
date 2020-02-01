@@ -29,17 +29,17 @@ namespace gr {
   namespace c4fm {
 
     time_transitions_bf::sptr
-    time_transitions_bf::make()
+    time_transitions_bf::make(double sps)
     {
       return gnuradio::get_initial_sptr
-        (new time_transitions_bf_impl());
+        (new time_transitions_bf_impl(sps));
     }
 
 
     /*
      * The private constructor
      */
-    time_transitions_bf_impl::time_transitions_bf_impl()
+    time_transitions_bf_impl::time_transitions_bf_impl(double sps)
       : gr::block("time_transitions_bf",
               gr::io_signature::make(1, 1, sizeof(char)),
               gr::io_signature::make(1, 1, sizeof(float)))
@@ -47,6 +47,7 @@ namespace gr {
       d_last = -1;
       d_count = 0;
       d_bits = 0;
+      d_sps = sps; /* 48000.0/1200.0; */
     }
 
     /*
@@ -78,7 +79,7 @@ namespace gr {
         if (in[i] == d_last)
         {
 	  d_count++;
-	  if (((float) d_count)*1200.0/44100.0 - d_bits > 0.5)
+	  if (((float) d_count)/d_sps - d_bits > 0.5)
           {
 	    out[produced] = 2.0*((float) in[i]) - 1.0;
 	    produced++;

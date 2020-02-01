@@ -45,7 +45,7 @@ namespace gr {
        * class. c4fm::time_transitions_bf::make is the public interface for
        * creating new instances.
        */
-      static sptr make();
+      static sptr make(double sps);
     };
 
   } // namespace c4fm

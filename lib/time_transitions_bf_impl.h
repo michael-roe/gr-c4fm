@@ -29,12 +29,13 @@ namespace gr {
     class time_transitions_bf_impl : public time_transitions_bf
     {
      private:
+      float d_sps;
       int d_last;
       int d_count;
       int d_bits;
 
      public:
-      time_transitions_bf_impl();
+      time_transitions_bf_impl(double sps);
       ~time_transitions_bf_impl();
 
       // Where all the action really happens

@@ -1,9 +1,13 @@
 id: c4fm_time_transitions_bf
-label: Time Transitions bf
+label: Time Transitions
 category: '[C4FM]'
 templates:
   imports: import c4fm
-  make: c4fm.time_transitions_bf()
+  make: c4fm.time_transitions_bf(${sps})
+parameters:
+- id: sps
+  label: Samples per Symbol
+  dtype: real
 inputs:
 - label: in
   domain: stream
