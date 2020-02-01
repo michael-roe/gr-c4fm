@@ -45,9 +45,10 @@ namespace gr {
       std::string addr_str;
       unsigned char *ptr;
       size_t offset;
-      unsigned char addr[23];
+      unsigned char addr[29];
       int i;
       int len;
+      int handled;
 
       if (pmt::is_pair(msg))
       {
@@ -55,20 +56,20 @@ namespace gr {
 	offset = 0;
 	ptr = (unsigned char *) uniform_vector_elements(blob, offset);
 	len = pmt::blob_length(blob);
-	if (len > 21)
+	if (len > 28)
         {
-          len = 21;
+          len = 28;
 	}
         if (ptr)
 	  memcpy(addr, ptr, len);
 	if (1)
 	{
 	  len = 1;
-	  while ((len < 21) && ((addr[len - 1] & 0x1) == 0))
+	  while ((len < 28) && ((addr[len - 1] & 0x1) == 0))
           {
             len++;
 	  }
-	  /* fprintf(stderr, "addr len = %d\n", len); */
+	  fprintf(stderr, "addr len = %d\n", len);
 	  for (i=0; i<len; i++)
           {
 	    addr[i] = addr[i] >> 1;
@@ -77,7 +78,17 @@ namespace gr {
 	      addr[i] = '?';
 	    }
 	  }
-	  /* fprintf(stderr, "SSID %02x %02x\n", addr[6], addr[13]); */
+	  fprintf(stderr, "SSID %02x %02x\n", addr[6] & 0xf, addr[13] & 0xf);
+	  fprintf(stderr, "command = %d\n", (addr[6] >> 6) & 0x1);
+	  fprintf(stderr, "command = %d\n", (addr[13] >> 6) & 0x1);
+	  if (len > 20)
+	  {
+            handled = (addr[20] >> 6) & 0x1;
+	  }
+	  else
+	  {
+	    handled = -1;
+	  }
 	  addr[6] = ' ';
 	  i = 6;
 	  while ((i >=0) && (addr[i] == ' '))
@@ -92,13 +103,20 @@ namespace gr {
 	    addr[i] = 0;
 	    i--;
 	  }
-	  addr[20] = 0;
+	  addr[20] = ' ';
 	  i = 20;
 	  while ((i >= 14) && (addr[i] == ' '))
 	  {
 	    addr[i] = 0;
 	    i--;
 	  }
+	  addr[27] = ' ';
+	  i = 27;
+	  while ((i >= 21) && (addr[i] == ' '))
+          {
+            addr[i] = 0;
+            i--;
+          }
 	  addr[len] = '\0';
 	  dict = pmt::make_dict();
 	  dict = pmt::dict_add(dict, pmt::intern("dst_addr"), pmt::string_to_symbol((char *) addr));
@@ -106,6 +124,18 @@ namespace gr {
 	  if (len > 14)
 	  {
 	    dict = pmt::dict_add(dict, pmt::intern("via_addr"), pmt::string_to_symbol((char *) addr + 14));
+	  }
+	  if (handled == 0)
+          {
+	    dict = pmt::dict_add(dict, pmt::intern("handled"), pmt::PMT_F);
+	  }
+	  else if (handled == 1)
+	  {
+	    dict = pmt::dict_add(dict, pmt::intern("handled"), pmt::PMT_T);
+          }
+	  if (len > 21)
+	  {
+	    dict = pmt::dict_add(dict, pmt::intern("via2_addr"), pmt::string_to_symbol((char *) addr + 21));
 	  }
 	  message_port_pub(d_port_out, pmt::cons(dict, blob));
 	}
