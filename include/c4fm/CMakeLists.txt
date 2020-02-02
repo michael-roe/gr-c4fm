@@ -36,5 +36,6 @@ install(FILES
     time_transitions_bf.h
     hdlc_unstuff_bb.h
     hdlc_parse_addr.h
-    sign_scrambler_ff.h DESTINATION include/c4fm
+    sign_scrambler_ff.h
+    pad_missing_bb.h DESTINATION include/c4fm
 )

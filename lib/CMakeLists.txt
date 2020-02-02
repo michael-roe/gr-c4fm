@@ -38,6 +38,7 @@ list(APPEND c4fm_sources
     hdlc_unstuff_bb_impl.cc
     hdlc_parse_addr_impl.cc
     sign_scrambler_ff_impl.cc
+    pad_missing_bb_impl.cc
 )
 
 set(c4fm_sources "${c4fm_sources}" PARENT_SCOPE)

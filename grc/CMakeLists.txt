@@ -32,5 +32,6 @@ install(FILES
     c4fm_time_transitions_bf.block.yml
     c4fm_hdlc_unstuff_bb.block.yml
     c4fm_hdlc_parse_addr.block.yml
-    c4fm_sign_scrambler_ff.block.yml DESTINATION share/gnuradio/grc/blocks
+    c4fm_sign_scrambler_ff.block.yml
+    c4fm_pad_missing_bb.block.yml DESTINATION share/gnuradio/grc/blocks
 )
