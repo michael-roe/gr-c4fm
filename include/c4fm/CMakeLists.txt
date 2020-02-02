@@ -35,5 +35,6 @@ install(FILES
     frequency_locked_loop_ff.h
     time_transitions_bf.h
     hdlc_unstuff_bb.h
-    hdlc_parse_addr.h DESTINATION include/c4fm
+    hdlc_parse_addr.h
+    sign_scrambler_ff.h DESTINATION include/c4fm
 )

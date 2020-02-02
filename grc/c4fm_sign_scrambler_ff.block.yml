@@ -1,0 +1,28 @@
+id: c4fm_sign_scrambler_ff
+label: Sign Scrambler
+category: '[C4FM]'
+templates:
+  imports: import c4fm
+  make: c4fm.sign_scrambler_ff(${mask}, ${seed}, ${len}, ${count})
+parameters:
+- id: mask
+  label: Mask
+  dtype: hex
+- id: seed
+  label: Seed
+  dtype: hex
+- id: len
+  label: Len
+  dtype: int
+- id: count
+  label: Count
+  dtype: int
+inputs:
+- label: in
+  domain: stream
+  dtype: float
+outputs:
+- label: out
+  domain: stream
+  dtype: float
+file_format: 1

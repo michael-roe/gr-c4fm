@@ -37,6 +37,7 @@ list(APPEND c4fm_sources
     time_transitions_bf_impl.cc
     hdlc_unstuff_bb_impl.cc
     hdlc_parse_addr_impl.cc
+    sign_scrambler_ff_impl.cc
 )
 
 set(c4fm_sources "${c4fm_sources}" PARENT_SCOPE)

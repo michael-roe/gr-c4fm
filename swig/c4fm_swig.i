@@ -21,6 +21,7 @@
 #include "c4fm/time_transitions_bf.h"
 #include "c4fm/hdlc_unstuff_bb.h"
 #include "c4fm/hdlc_parse_addr.h"
+#include "c4fm/sign_scrambler_ff.h"
 %}
 
 %include "c4fm/bernoulli_source_b.h"
@@ -49,3 +50,5 @@ GR_SWIG_BLOCK_MAGIC2(c4fm, time_transitions_bf);
 GR_SWIG_BLOCK_MAGIC2(c4fm, hdlc_unstuff_bb);
 %include "c4fm/hdlc_parse_addr.h"
 GR_SWIG_BLOCK_MAGIC2(c4fm, hdlc_parse_addr);
+%include "c4fm/sign_scrambler_ff.h"
+GR_SWIG_BLOCK_MAGIC2(c4fm, sign_scrambler_ff);
