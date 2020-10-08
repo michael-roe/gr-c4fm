@@ -23,6 +23,7 @@
 #include "c4fm/hdlc_parse_addr.h"
 #include "c4fm/sign_scrambler_ff.h"
 #include "c4fm/pad_missing_bb.h"
+#include "c4fm/interleaved_float_to_complex.h"
 %}
 
 %include "c4fm/bernoulli_source_b.h"
@@ -55,3 +56,5 @@ GR_SWIG_BLOCK_MAGIC2(c4fm, hdlc_parse_addr);
 GR_SWIG_BLOCK_MAGIC2(c4fm, sign_scrambler_ff);
 %include "c4fm/pad_missing_bb.h"
 GR_SWIG_BLOCK_MAGIC2(c4fm, pad_missing_bb);
+%include "c4fm/interleaved_float_to_complex.h"
+GR_SWIG_BLOCK_MAGIC2(c4fm, interleaved_float_to_complex);

@@ -33,5 +33,6 @@ install(FILES
     c4fm_hdlc_unstuff_bb.block.yml
     c4fm_hdlc_parse_addr.block.yml
     c4fm_sign_scrambler_ff.block.yml
-    c4fm_pad_missing_bb.block.yml DESTINATION share/gnuradio/grc/blocks
+    c4fm_pad_missing_bb.block.yml
+    c4fm_interleaved_float_to_complex.block.yml DESTINATION share/gnuradio/grc/blocks
 )

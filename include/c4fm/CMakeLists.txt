@@ -37,5 +37,6 @@ install(FILES
     hdlc_unstuff_bb.h
     hdlc_parse_addr.h
     sign_scrambler_ff.h
-    pad_missing_bb.h DESTINATION include/c4fm
+    pad_missing_bb.h
+    interleaved_float_to_complex.h DESTINATION include/c4fm
 )

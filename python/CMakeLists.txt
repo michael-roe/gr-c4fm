@@ -57,3 +57,4 @@ GR_ADD_TEST(qa_hdlc_unstuff_bb ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/
 GR_ADD_TEST(qa_hdlc_parse_addr ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_hdlc_parse_addr.py)
 GR_ADD_TEST(qa_sign_scrambler_ff ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_sign_scrambler_ff.py)
 GR_ADD_TEST(qa_pad_missing_bb ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_pad_missing_bb.py)
+GR_ADD_TEST(qa_interleaved_float_to_complex ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_interleaved_float_to_complex.py)
