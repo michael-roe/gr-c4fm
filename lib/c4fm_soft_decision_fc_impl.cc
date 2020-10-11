@@ -29,7 +29,7 @@ namespace gr {
   namespace c4fm {
 
     c4fm_soft_decision_fc::sptr
-    c4fm_soft_decision_fc::make(double gain)
+    c4fm_soft_decision_fc::make(float gain)
     {
       return gnuradio::get_initial_sptr
         (new c4fm_soft_decision_fc_impl(gain));
@@ -38,7 +38,7 @@ namespace gr {
     /*
      * The private constructor
      */
-    c4fm_soft_decision_fc_impl::c4fm_soft_decision_fc_impl(double gain)
+    c4fm_soft_decision_fc_impl::c4fm_soft_decision_fc_impl(float gain)
       : gr::sync_block("c4fm_soft_decision_fc",
               gr::io_signature::make(1, 1, sizeof(float)),
               gr::io_signature::make(1, 1, sizeof(gr_complex)))

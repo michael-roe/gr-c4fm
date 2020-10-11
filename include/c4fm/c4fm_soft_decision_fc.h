@@ -36,10 +36,10 @@ namespace gr {
      * The input is a floating point number where the values -3, -1, +1 and +3
      * represent the Gray-coded dibits 11, 10, 00 and 01. The output is a complex
      * number whose real part is a soft decision for the first bit and whose
-     * imaginary part is a soft decision for the second bit. In the output, -1
-     * represents a bit value of 0 and +1 represents a bit value of 1; values between
-     * -1 and +1 are output when the input value lies between a point of the
-     *  constellation.
+     * imaginary part is a soft decision for the second bit. In the output, -1*gain
+     * represents a bit value of 0 and +1*gain represents a bit value of 1; values
+     * between -gain and +gain are output when the input value lies between a point
+     * of the constellation.
      */
     class C4FM_API c4fm_soft_decision_fc : virtual public gr::sync_block
     {
@@ -54,7 +54,7 @@ namespace gr {
        * class. c4fm::c4fm_soft_decision_fc::make is the public interface for
        * creating new instances.
        */
-      static sptr make(double gain);
+      static sptr make(float gain);
     };
 
   } // namespace c4fm
