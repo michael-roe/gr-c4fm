@@ -66,9 +66,13 @@ namespace gr {
       for (i = 0; i < noutput_items; i++)
       {
 	f = in[i];
-	if (f < -3.0)
+	if (f < -4.0)
+	{
+	  out[i] = gr_complex(0.0, d_gain);
+	}
+	else if (f < -3.0)
         {
-          out[i] = gr_complex(d_gain, d_gain);
+          out[i] = gr_complex(d_gain*(f+4), d_gain);
 	}
 	else if (f < -1.0)
         {
@@ -82,7 +86,11 @@ namespace gr {
 	{
 	  out[i] = gr_complex(-d_gain, d_gain*(f-2));
         }
-        else
+        else if (f < 4.0)
+	{
+	  out[i] = gr_complex(d_gain*(f-4), d_gain);
+	}
+	else
 	{	
           out[i] = gr_complex(-d_gain, d_gain);
 	}
