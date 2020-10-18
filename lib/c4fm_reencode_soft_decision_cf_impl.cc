@@ -53,12 +53,38 @@ namespace gr {
       int i;
       int bit0;
       int bit1;
+      float err0;
+      float err1;
 
       for (i=0; i<noutput_items; i++)
       {
         bit0 = (in[i].real() >= 0) ? 1 : 0;
 	bit1 = (in[i].imag() >= 0) ? 1 : 0;
+	err0 = in[i].real()*d_gain - (bit0 ? 1.0 : -1.0);
+	err1 = in[i].imag()*d_gain - (bit1 ? 1.0 : -1.0);
 	out[i] = graycode[bit1*2 + bit0];
+	if (fabs(err0) < fabs(err1))
+	{
+          if (bit0)
+	  {
+	    out[i] -= err1;
+	  }
+	  else
+	  {
+            out[i] += err1;
+	  }
+        }
+	else
+	{
+	  if (bit1)
+	  {
+	    out[i] += err0;
+	  }
+	  else
+          {
+	    out[i] -= err0;
+	  }
+	}
       }
 
       // Tell runtime system how many output items we produced.
