@@ -38,5 +38,6 @@ install(FILES
     hdlc_parse_addr.h
     sign_scrambler_ff.h
     pad_missing_bb.h
-    interleaved_float_to_complex.h DESTINATION include/c4fm
+    interleaved_float_to_complex.h
+    c4fm_reencode_soft_decision_cf.h DESTINATION include/c4fm
 )

@@ -1,0 +1,19 @@
+id: c4fm_c4fm_reencode_soft_decision_cf
+label: C4FM Reencode Soft Decision
+category: '[C4FM]'
+templates:
+  imports: import c4fm
+  make: c4fm.c4fm_reencode_soft_decision_cf(${gain})
+parameters:
+- id: gain
+  label: Gain
+  dtype: float
+inputs:
+- label: in
+  domain: stream
+  dtype: complex
+outputs:
+- label: out
+  domain: stream
+  dtype: float
+file_format: 1

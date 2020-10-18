@@ -40,6 +40,7 @@ list(APPEND c4fm_sources
     sign_scrambler_ff_impl.cc
     pad_missing_bb_impl.cc
     interleaved_float_to_complex_impl.cc
+    c4fm_reencode_soft_decision_cf_impl.cc
 )
 
 set(c4fm_sources "${c4fm_sources}" PARENT_SCOPE)
