@@ -29,7 +29,8 @@ include(GrPybind)
 ########################################################################
 
 list(APPEND c4fm_python_files
-    bernoulli_source_b_python.cc python_bindings.cc)
+    bernoulli_source_b_python.cc
+    markov_source_b_python.cc python_bindings.cc)
 
 GR_PYBIND_MAKE_OOT(c4fm
    ../../..

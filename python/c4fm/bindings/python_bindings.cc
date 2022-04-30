@@ -22,6 +22,7 @@ namespace py = pybind11;
 /**************************************/
 // BINDING_FUNCTION_PROTOTYPES(
     void bind_bernoulli_source_b(py::module& m);
+    void bind_markov_source_b(py::module& m);
 // ) END BINDING_FUNCTION_PROTOTYPES
 
 
@@ -51,5 +52,6 @@ PYBIND11_MODULE(c4fm_python, m)
     /**************************************/
     // BINDING_FUNCTION_CALLS(
     bind_bernoulli_source_b(m);
+    bind_markov_source_b(m);
     // ) END BINDING_FUNCTION_CALLS
 }

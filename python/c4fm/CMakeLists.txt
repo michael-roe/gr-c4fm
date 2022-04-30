@@ -40,3 +40,4 @@ add_custom_target(
           ${CMAKE_BINARY_DIR}/test_modules/gnuradio/c4fm/
 )
 GR_ADD_TEST(qa_bernoulli_source_b ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_bernoulli_source_b.py)
+GR_ADD_TEST(qa_markov_source_b ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_markov_source_b.py)

@@ -1,0 +1,21 @@
+id: c4fm_markov_source_b
+label: Markov Source
+category: '[C4FM]'
+templates:
+  imports: import c4fm
+  make: c4fm.markov_source_b(${p_start}, ${p_stop}, ${seed})
+parameters:
+- id: p_start
+  label: P_Start
+  dtype: real
+- id: p_stop
+  label: P_Stop
+  dtype: real
+- id: seed
+  label: Seed
+  dtype: raw
+outputs:
+- label: out
+  domain: stream
+  dtype: byte
+file_format: 1

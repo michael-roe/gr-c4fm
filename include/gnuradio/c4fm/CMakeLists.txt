@@ -11,5 +11,6 @@
 ########################################################################
 install(FILES
     api.h
-    bernoulli_source_b.h DESTINATION include/gnuradio/c4fm
+    bernoulli_source_b.h
+    markov_source_b.h DESTINATION include/gnuradio/c4fm
 )
