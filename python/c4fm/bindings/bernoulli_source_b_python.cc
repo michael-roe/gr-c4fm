@@ -14,7 +14,7 @@
 /* BINDTOOL_GEN_AUTOMATIC(0)                                                       */
 /* BINDTOOL_USE_PYGCCXML(0)                                                        */
 /* BINDTOOL_HEADER_FILE(bernoulli_source_b.h)                                        */
-/* BINDTOOL_HEADER_FILE_HASH(ee7ba3d5a68e9c7c9b92923dacfe3ff0)                     */
+/* BINDTOOL_HEADER_FILE_HASH(172c005dd716795f3340dc522eeec342)                     */
 /***********************************************************************************/
 
 #include <pybind11/complex.h>
@@ -30,13 +30,15 @@ namespace py = pybind11;
 void bind_bernoulli_source_b(py::module& m)
 {
 
-    using bernoulli_source_b    = gr::c4fm::bernoulli_source_b;
+    using bernoulli_source_b    = ::gr::c4fm::bernoulli_source_b;
 
 
     py::class_<bernoulli_source_b, gr::sync_block, gr::block, gr::basic_block,
         std::shared_ptr<bernoulli_source_b>>(m, "bernoulli_source_b", D(bernoulli_source_b))
 
         .def(py::init(&bernoulli_source_b::make),
+           py::arg("p"),
+           py::arg("seed"),
            D(bernoulli_source_b,make)
         )
         
