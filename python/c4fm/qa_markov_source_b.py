@@ -28,13 +28,13 @@ class qa_markov_source_b(gr_unittest.TestCase):
         self.tb = None
 
     def test_instance(self):
-        instance = markov_source_b(0.25, 1.0, 0)
+        instance = markov_source_b(0.25, 0.75, 0)
 
     def test_001_descriptive_test_name(self):
-        rng = markov_source_b(0.25, 1.0, 0)
-        head = blocks.head(gr.sizeof_char, 2000)
+        rng = markov_source_b(0.25, 0.75, 0)
+        head = blocks.head(gr.sizeof_char, 20000)
         convert = blocks.uchar_to_float()
-        integrate = blocks.integrate_ff(1000)
+        integrate = blocks.integrate_ff(10000)
         dst = blocks.vector_sink_f()
         self.tb.connect(rng, head)
         self.tb.connect(head, convert)
@@ -42,13 +42,14 @@ class qa_markov_source_b(gr_unittest.TestCase):
         self.tb.connect(integrate, dst)
         self.tb.run ()
         # check data
-        # The result is a random variable of mean 0.25*1000 = 250
+        # The result is a random variable of mean
+        # 10000*0.5*0.25/(0.25+0.75) = 1250
         # This test is statistical: there is a small probablity that it will
         # fail.
-        self.assertLess(dst.data()[0], 350.0)
-        self.assertGreater(dst.data()[0], 150.0)
-        self.assertLess(dst.data()[1], 350.0)
-        self.assertGreater(dst.data()[1], 150.0)
+        self.assertLess(dst.data()[0], 1300.0)
+        self.assertGreater(dst.data()[0], 1200.0)
+        self.assertLess(dst.data()[1], 1300.0)
+        self.assertGreater(dst.data()[1], 1200.0)
 
 if __name__ == '__main__':
     gr_unittest.run(qa_markov_source_b)

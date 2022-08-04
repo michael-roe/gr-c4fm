@@ -24,6 +24,7 @@ namespace c4fm {
  * While in the active state, the output is 0 with probability 0.5 and 1
  * with probability 0.5.
  *
+ * The mean value of the output is 0.5*p_start/(p_start + p_stop).
  */
 class C4FM_API markov_source_b : virtual public gr::sync_block {
 public:
