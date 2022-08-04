@@ -15,8 +15,14 @@ namespace gr {
 namespace c4fm {
 
 /*!
- * \brief <+description of block+>
+ * \brief Generate random bits by a Markov process
  * \ingroup c4fm
+ * \details
+ * The Markov process transitions from the idle state to the active state
+ * with probability p_start, and from the active state to the idle state
+ * with probability p_stop. While in the idle state, the output is 0.
+ * While in the active state, the output is 0 with probability 0.5 and 1
+ * with probability 0.5.
  *
  */
 class C4FM_API markov_source_b : virtual public gr::sync_block {

@@ -18,8 +18,8 @@ namespace c4fm {
  * \brief Generate random bits that have a Bernoulli distribution.
  * \ingroup c4fm
  * \details
- * ach byte in the output stream is 1 with probability p and 0 with probability
- 1-p.
+ * Each byte in the output stream is 1 with probability p and 0 with
+ * probability 1-p.
  *
  */
 class C4FM_API bernoulli_source_b : virtual public gr::sync_block

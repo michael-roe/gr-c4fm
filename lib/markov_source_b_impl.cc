@@ -56,20 +56,7 @@ int markov_source_b_impl::work(int noutput_items,
       q = d_rng->ran1();
       if (q < d_p_stop)
       {
-        out[i] = 1;
 	d_state = 0;
-      }
-      else
-      {
-        q = d_rng->ran1();
-	if (q < 0.5)
-	{
-	  out[i] = 0;
-	}
-	else
-	{
-	  out[i] = 1;
-	}
       }
     }
     else
@@ -77,21 +64,24 @@ int markov_source_b_impl::work(int noutput_items,
       q = d_rng->ran1();
       if (q < d_p_start)
       {
+        d_state = 1;
+      }
+    }
+    if (d_state)
+    {
+      q = d_rng->ran1();
+      if (q < 0.5)
+      {
         out[i] = 1;
-	q = d_rng->ran1();
-	if (q < d_p_stop)
-	{
-          d_state = 0;
-	}
-	else
-	{
-	  d_state = 1;
-	}
       }
       else
       {
         out[i] = 0;
       }
+    }
+    else
+    {
+      out[i] = 0;
     }
   }
 
